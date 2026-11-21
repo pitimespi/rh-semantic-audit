@@ -2,10 +2,10 @@
 
 ## Status
 
-The reusable research prototype (v0.5) is published in the owner's standalone repository:
+The reusable research prototype (v0.6) is published in the owner's standalone repository:
 https://github.com/pitimespi/rh-semantic-audit
 
-The initial release contained 12 files. Version 0.3 added the `semantic_graph/` engine. Version 0.4 added read-only Prove2me adapter logic and the local proposal-item provenance; version 0.5 adds source-line-verified Bitcoin semantic explanations and a local interactive graph viewer. CI checks Python tests, fixture validation, JavaScript syntax, and pinned Bitcoin source references. The original reports and scanner remain available.
+The initial release contained 12 files. Version 0.3 added the `semantic_graph/` engine. Version 0.4 added read-only Prove2me adapter logic and the local proposal-item provenance; version 0.5 added source-line-verified Bitcoin semantic explanations and a local interactive graph viewer. Version 0.6 adds secure local Prove2me API-key exchange for read-only lookups. CI checks Python tests, fixture validation, JavaScript syntax, and pinned Bitcoin source references. The original reports and scanner remain available.
 
 **No community engagement is authorized.** Do not open issues or pull requests in other repositories, comment on others' research, contact Alpöge or verification maintainers, or post announcements without new explicit authorization.
 
