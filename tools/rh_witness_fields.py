@@ -17,8 +17,10 @@ from pathlib import Path
 REPOSITORY = "Deicyde/riemann-hypothesis"
 PIN = "e50d09817ad81469f737e8f637561e6ccf86c670"
 PREFIX = "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/"
-FILES = {"definition": PREFIX + "Hyps.lean", "constructor": PREFIX + "NonemptyHypsOfAllRows.lean"}
+FILES = {"definition": PREFIX + "Hyps.lean", "constructor": PREFIX + "NonemptyHypsOfAllRows.lean",
+         "row": PREFIX + "AllRows.lean"}
 EXPECTED_COUNT = 46
+EXPECTED_ROW_COUNT = 26
 # Accept Unicode identifiers (including 𝒜, σ) without assuming ASCII-only Lean.
 FIELD = re.compile(r"^  ([^\s:]+)\s*:\s")
 ASSIGN = re.compile(r"^    ([^\s:]+)\s*:=\s*(.*)$")
@@ -41,6 +43,24 @@ def parse_structure(source):
     if len({name for name, _ in result}) != len(result):
         raise ValueError("Duplicate HypsAlt field names")
     return result
+
+
+def parse_allrows(source):
+    """Read 26 named fields of the upstream AllRowsAlt : Prop record."""
+    lines = source.splitlines()
+    markers = [i for i, line in enumerate(lines) if line.startswith("structure AllRowsAlt ")]
+    if len(markers) != 1 or ": Prop where" not in "\n".join(lines[markers[0]:markers[0] + 3]):
+        raise ValueError("Expected one AllRowsAlt : Prop structure")
+    fields = []
+    for index in range(markers[0] + 1, len(lines)):
+        if lines[index].startswith("end GlobalTheory.Fc"):
+            break
+        match = FIELD.match(lines[index])
+        if match:
+            fields.append((match.group(1), index + 1))
+    if len({k for k, _ in fields}) != len(fields):
+        raise ValueError("Duplicate upstream AllRowsAlt fields")
+    return fields
 
 
 def parse_constructor(source):
@@ -129,6 +149,31 @@ def validate_ledger(ledger, actual):
     return collections.Counter(x["construction_kind"] for x in actual)
 
 
+def validate_row_package(ledger, row_source, witness_fields):
+    record = ledger.get("row_package")
+    if not isinstance(record, dict):
+        raise ValueError("Ledger missing upstream AllRowsAlt package")
+    if record.get("type") != "GlobalTheory.Fc.AllRowsAlt : Prop" or record.get("source_path") != FILES["row"]:
+        raise ValueError("Upstream row package provenance mismatch")
+    rows = parse_allrows(row_source)
+    if len(rows) != EXPECTED_ROW_COUNT:
+        raise ValueError(f"Expected 26 upstream row fields; found {len(rows)}")
+    if not isinstance(record.get("fields"), list) or len(record["fields"]) != EXPECTED_ROW_COUNT:
+        raise ValueError("Wrong upstream row field ledger length")
+    names = {f["field"] for f in witness_fields}
+    for i, (name, line) in enumerate(rows):
+        item = record["fields"][i]
+        if item.get("field") != name or item.get("declaration_line") != line:
+            raise ValueError(f"Upstream row field {i + 1} mismatches pinned source")
+        if item.get("declaration_url") != f"https://github.com/{REPOSITORY}/blob/{PIN}/{FILES['row']}#L{line}":
+            raise ValueError("Row declaration URL is not source-pinned")
+        if item.get("downstream_witness_field") != name or name not in names:
+            raise ValueError(f"Row field {name} missing from downstream HypsAlt names")
+        if item.get("correspondence_kind") != "name_only":
+            raise ValueError("Source syntax does not justify stronger semantic equivalence")
+    return len(rows)
+
+
 def fetch_pinned(file):
     if file not in FILES.values():
         raise ValueError("File is outside the two-path allowlist")
@@ -148,11 +193,16 @@ def main(argv=None):
     if not args.fetch_pinned:
         parser.error("Use --fetch-pinned; no Lean code is executed")
     actual = inspect(fetch_pinned(FILES["definition"]), fetch_pinned(FILES["constructor"]))
-    counters = validate_ledger(json.loads(args.ledger.read_text(encoding="utf-8")), actual)
+    ledger = json.loads(args.ledger.read_text(encoding="utf-8"))
+    counters = validate_ledger(ledger, actual)
+    upstream = validate_row_package(ledger, fetch_pinned(FILES["row"]), actual)
     print(json.dumps({
         "status": "source_syntax_only",
         "commit": PIN,
         "matched_fields": len(actual),
+        "upstream_allrows_fields": upstream,
+        "upstream_names_present_in_witness": upstream,
+        "upstream_relation": "name_only",
         "missing": 0,
         "extra": 0,
         "classifications": dict(counters),
