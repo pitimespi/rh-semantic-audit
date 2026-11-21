@@ -138,6 +138,46 @@
         "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Main.lean"
       },
       "assumptions": []
+    },
+    {
+      "id": "thetaTarget",
+      "symbol": "UpperTheory.Lit.every_character_of_theta_integrals_local_matching",
+      "title": "Actual central theta/local-matching theorem",
+      "statement": "Seven explicit inputs—UnitaryGroupThirdPlaceHypotheses, ThetaLocalInputs, ThetaIntegralsAgree, LocalMatching, CovolumeBoundOfX, RecTExists and VWin—yield UpperTheory.EveryCharacter. This is a direct source-level statement, not independent verification.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L69"
+      },
+      "assumptions": [
+        {
+          "name": "P",
+          "meaning": "UnitaryGroupThirdPlaceHypotheses"
+        },
+        {
+          "name": "F",
+          "meaning": "ThetaLocalInputs"
+        },
+        {
+          "name": "hA",
+          "meaning": "ThetaIntegralsAgree"
+        },
+        {
+          "name": "hM",
+          "meaning": "LocalMatching"
+        },
+        {
+          "name": "hX",
+          "meaning": "CovolumeBoundOfX"
+        },
+        {
+          "name": "hL",
+          "meaning": "RecTExists"
+        },
+        {
+          "name": "hV",
+          "meaning": "VWin"
+        }
+      ]
     }
   ],
   "edges": [
@@ -308,6 +348,25 @@
       "semantic": {
         "role": "Sourced theorem composition",
         "explanation": "The headline theorem uses rhOfAll directly.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r10",
+      "from": "thetaTarget",
+      "to": "literature",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L812"
+        }
+      },
+      "semantic": {
+        "role": "Direct use of the actual central theta theorem",
+        "explanation": "The literature-and-window wrapper applies the seven-premise theta/local-matching theorem. AUDIT-005 maps all seven source-level arguments; this is not a Lean kernel dependency certificate.",
         "review_status": "draft",
         "reviewers": []
       }
