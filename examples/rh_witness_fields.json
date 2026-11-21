@@ -246,7 +246,7 @@
       "field": "selJ",
       "declaration_line": 59,
       "constructor_line": 82,
-      "construction_kind": "lambda",
+      "construction_kind": "classical_choice",
       "definition_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/Hyps.lean#L59",
       "assignment_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L82",
       "review_status": "syntax_only"
