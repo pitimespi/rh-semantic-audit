@@ -8,6 +8,7 @@ on:
       - "examples/rh_analytic_bridge.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
+      - "tools/rh_analytic_check.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   pull_request:
@@ -17,6 +18,7 @@ on:
       - "examples/rh_analytic_bridge.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
+      - "tools/rh_analytic_check.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   workflow_dispatch:
