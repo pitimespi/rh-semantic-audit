@@ -1,0 +1,42 @@
+# Risk-ranked mathematical review queue
+
+Adapted from `pitimespi/prove2me`'s documented review method. This is a proposed workflow, not completed independent agent work.
+
+## Priority A — first independent review
+
+**A1. Expand `OpenLiteratureStatements` at the composition boundary.** Identify its actual definition, constituent fields, dependencies, and the proof of each field supplied in `everyCharacter_of_row`. Produce a precise proposition-only read-back and confirm all inputs are genuinely discharged in the conclusion. The tuple `⟨h, UpperTheory.Zero.LLC.recTExists, h⟩` is an obvious focal point, but it is *not evidence of a defect*.
+
+**A2. Explain `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`.** List hypotheses, their mathematical meaning, and the chain leading to the nonvanishing result. Avoid using filenames or theorem names as substitutes for explanations.
+
+**A3. Trace `UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter`.** Identify what `Row0b recT` means, how the theta-lift and Galois representation constructions establish it, and any assumptions encoded in types or instances.
+
+## Priority B — independent formal-methods review
+
+**B1. Verify semantics of the headline five statements.** Cross-compare the independently compiled `Challenge.lean` with `Main.lean` and Mathlib. A passing Comparator has stronger significance than a source-text match.
+
+**B2. Document metaprogramming and axiom surfaces.** Independent verifier's notes identify `kexactB`, `kcopy`, and direct assignment of terms; these raise the importance of independent kernel replay, rather than independently proving an exploit or unsoundness.
+
+**B3. Generate the *elaborated* dependency DAG.** Use Lean/Mathlib environment tools, not regular expressions, and record the exact versions and source SHA used.
+
+## Priority C — expert mathematical exposition
+
+**C1. Write the argument in prose using ordinary theorem/proof structure.** Find natural groups of mathematical lemmas. Ask specialists to assess whether any genuinely novel theorem can be stated compactly.
+
+**C2. Include adversarial read-backs.** One reviewer sees only the formal statement; another sees independently selected mathematical background without the source proof. Compare, then resolve disagreements at the definition level.
+
+**C3. Track audit outcomes explicitly.** Mark findings as `verified source match`, `explanation incomplete`, `needs independent Lean check`, `actual counterexample`, or `discharged`; do not call every missing explanation an error.
+
+## Done means
+
+A review item is complete only when it has a pinned source URL, an exact statement, human-readable interpretation, all important hypotheses enumerated, explicit evidence for its verdict, and the limits of that evidence.
+
+## What transfers from Prove2me
+
+- Blind read-backs and source correspondence: **strong transfer**.
+- Risk-ranked spot reviews and independently repeated audits: **strong transfer**.
+- Differential input/output vectors against Bitcoin Core: **weak transfer**; abstract propositions have no executable reference implementation.
+- Independent checkers, pinned revisions, and axiom audits: **strong transfer**, but don't duplicate existing expensive runs without clear new value.
+
+## Current baseline work and non-duplication
+
+See [`AUDIT-002.md`](AUDIT-002.md) for a bounded read-back of the literature/theta interface. Keith Adler's public dependency map already traces the five-theorem `EveryCharacter` chain; the independent replay project already checks headline statement definitions. Our proposed work must add *mathematical interpretation* or new independently reproducible evidence, not relabel existing maps as new research.
