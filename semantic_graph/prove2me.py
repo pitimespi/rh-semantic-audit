@@ -232,6 +232,56 @@ def _get_json(url, token):
         raise RuntimeError(f"Prove2me returned HTTP {ex.code} (redirects are disabled)") from None
 
 
+def exchange_api_key(api_key):
+    """Exchange a Prove2me API key for a short-lived access token.
+
+    This is the one POST supported by the client, used only for authentication.
+    The key is sent solely to the documented HTTPS /agent/refresh endpoint.
+    Redirects are forbidden and neither key nor token is logged or persisted.
+    """
+    if not isinstance(api_key, str) or not api_key.startswith("p2m_") or "\n" in api_key or "\r" in api_key:
+        raise ValueError("PROVE2ME_API_KEY must be a Prove2me API key starting with p2m_")
+    body = json.dumps({"api_key": api_key}).encode("utf-8")
+    request = urllib.request.Request(
+        BASE + "/agent/refresh",
+        data=body,
+        headers={"Content-Type": "application/json", "Accept": "application/json"},
+        method="POST",
+    )
+    opener = urllib.request.build_opener(_NeverRedirect())
+    try:
+        with opener.open(request, timeout=30) as response:
+            if response.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
+                raise ValueError("Prove2me token response was not JSON")
+            raw = response.read(100_001)
+            if len(raw) > 100_000:
+                raise ValueError("Prove2me token response exceeds size limit")
+            result = json.loads(raw)
+    except urllib.error.HTTPError as ex:
+        raise RuntimeError(f"Prove2me authentication returned HTTP {ex.code} (redirects disabled)") from None
+    if not isinstance(result, dict) or not isinstance(result.get("access_token"), str) or not result["access_token"]:
+        raise ValueError("Prove2me token response did not include an access token")
+    return result["access_token"]
+
+
+def access_token_from_environment(env=None):
+    """Prefer short-lived bearer token; otherwise exchange locally set API key.
+
+    Caller must NOT print the returned token or persist it in a repository.
+    """
+    environment = os.environ if env is None else env
+    access_token = environment.get("PROVE2ME_ACCESS_TOKEN", "")
+    if access_token:
+        return access_token
+    api_key = environment.get("PROVE2ME_API_KEY", "")
+    if api_key:
+        return exchange_api_key(api_key)
+    raise ValueError(
+        "Set PROVE2ME_ACCESS_TOKEN or PROVE2ME_API_KEY locally; "
+        "do not paste credentials into source code or GitHub."
+    )
+
+
 def fetch_readonly(theorem_id, kind, token):
     """Fetch exactly one theorem or its decomposition; HTTP GET only."""
     if not valid_uuid(theorem_id):
