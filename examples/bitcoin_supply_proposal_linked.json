@@ -141,17 +141,17 @@
       "id": "b2",
       "from": "block_supply",
       "to": "supply_bound",
-      "kind": "import_candidate",
+      "kind": "source_reference",
       "evidence": {
-        "method": "import_statement",
+        "method": "textual_reference",
         "source": {
           "path": "Solutions/Sol_BitcoinSupply_supply_bound.lean",
-          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean"
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean#L321"
         }
       },
       "semantic": {
-        "role": "Candidate mathematical prerequisite",
-        "explanation": "The local supply bound is a candidate inductive step in the global reachable-state argument.",
+        "role": "Explicit theorem invocation within the pinned Lean solution (not kernel-traced)",
+        "explanation": "The reachability induction for supply_bound applies BitcoinSupply.block_supply to the newly validated block, giving the per-block inequality used to extend the invariant.",
         "review_status": "draft",
         "reviewers": []
       }
@@ -179,17 +179,17 @@
       "id": "b4",
       "from": "subsidy_cap",
       "to": "supply_cap",
-      "kind": "import_candidate",
+      "kind": "source_reference",
       "evidence": {
-        "method": "import_statement",
+        "method": "textual_reference",
         "source": {
           "path": "Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean",
-          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean"
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean#L315"
         }
       },
       "semantic": {
-        "role": "Candidate mathematical prerequisite",
-        "explanation": "The global subsidy cap is a candidate input for bounding ledger value.",
+        "role": "Explicit theorem invocation within the pinned Lean solution (not kernel-traced)",
+        "explanation": "The final supply_lt_maxMoney proof explicitly invokes BitcoinSubsidy.issuance_bound for S.nextHeight and rewrites the subsidy upper bound into its numeric form.",
         "review_status": "draft",
         "reviewers": []
       }
@@ -198,17 +198,17 @@
       "id": "b5",
       "from": "supply_bound",
       "to": "supply_cap",
-      "kind": "import_candidate",
+      "kind": "source_reference",
       "evidence": {
-        "method": "import_statement",
+        "method": "textual_reference",
         "source": {
           "path": "Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean",
-          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean"
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean#L314"
         }
       },
       "semantic": {
-        "role": "Candidate mathematical prerequisite",
-        "explanation": "The reachable-chain supply inequality is a candidate bound for the final MAX_MONEY result.",
+        "role": "Explicit theorem invocation within the pinned Lean solution (not kernel-traced)",
+        "explanation": "The final supply_lt_maxMoney proof explicitly invokes BitcoinSupply.supply_bound S hR; together with the issuance cap and genesisSubsidy >= 0, linear arithmetic derives the strict MAX_MONEY ceiling.",
         "review_status": "draft",
         "reviewers": []
       }
