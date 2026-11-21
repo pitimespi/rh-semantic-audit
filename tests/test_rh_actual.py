@@ -56,7 +56,9 @@ class ActualCentralBridgeTests(unittest.TestCase):
         for edge in graph["edges"]:
             src = edge["evidence"]["source"]
             num = int(src["url"].rsplit("#L", 1)[1])
-            lines = lines_by_file.setdefault(src["path"], [""] * 90)
+            lines = lines_by_file.setdefault(src["path"], [])
+            if len(lines) < num:
+                lines.extend([""] * (num - len(lines)))
             symbol = by_id[edge["from"]]["symbol"].split(".")[-1]
             lines[num - 1] += " " + symbol
         result = source_line_checks(
