@@ -1,10 +1,10 @@
 # Risk-ranked mathematical review queue
 
-Adapted from `pitimespi/prove2me`'s documented review method. This is a proposed workflow, not completed independent agent work.
+RH-only review plan. It borrows generic evidence and read-back methods from earlier formal verification work, but no other subject remains an active research target. This is not a completed independent mathematical proof review.
 
 ## Priority A — first independent review
 
-**A1. Expand `OpenLiteratureStatements` at the composition boundary.** Identify its actual definition, constituent fields, dependencies, and the proof of each field supplied in `everyCharacter_of_row`. Produce a precise proposition-only read-back and confirm all inputs are genuinely discharged in the conclusion. The tuple `⟨h, UpperTheory.Zero.LLC.recTExists, h⟩` is an obvious focal point, but it is *not evidence of a defect*.
+**A1. Expand `OpenLiteratureStatements` at the composition boundary — source-level inventory COMPLETE, elaborated mathematical interpretation OPEN.** [AUDIT-003](AUDIT-003-OPEN-LITERATURE.md) identifies its three exact fields: two of type `UpperTheory.One.M.Row`, and one of type `UpperTheory.Zero.LLC.RecTExists`. The proof passes `⟨h, UpperTheory.Zero.LLC.recTExists, h⟩`. Next: explain the relationship of `Row0b` and `Row` with actual Lean elaboration; classify all field-defining prerequisites, rather than assuming they are automatically discharged mathematically.
 
 **A2. Explain `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`.** List hypotheses, their mathematical meaning, and the chain leading to the nonvanishing result. Avoid using filenames or theorem names as substitutes for explanations.
 
@@ -39,4 +39,4 @@ A review item is complete only when it has a pinned source URL, an exact stateme
 
 ## Current baseline work and non-duplication
 
-See [`AUDIT-002.md`](AUDIT-002.md) for a bounded read-back of the literature/theta interface. Keith Adler's public dependency map already traces the five-theorem `EveryCharacter` chain; the independent replay project already checks headline statement definitions. Our proposed work must add *mathematical interpretation* or new independently reproducible evidence, not relabel existing maps as new research.
+See [`AUDIT-002.md`](AUDIT-002.md) for the literature/theta interface and [`AUDIT-003`](AUDIT-003-OPEN-LITERATURE.md) for the three-field hypothesis inventory. Keith Adler's public dependency map already traces the five-theorem `EveryCharacter` chain; the independent replay project already checks headline statement definitions. Our proposed work must add *mathematical interpretation* or new independently reproducible evidence, not relabel existing maps as new research.
