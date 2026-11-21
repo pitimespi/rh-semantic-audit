@@ -10,7 +10,7 @@ From the root of a local clone of this repository, run:
 python3 -m http.server 8000
 \`\`\`
 
-Open \`http://localhost:8000/viewer/\` in a modern browser. Choose **Explore RH theorem chain**. The pages and example JSON load from your own local development server.
+Open \`http://localhost:8000/viewer/\` in a modern browser. Choose **RH theorem chain** for the headline path or **Analytic bridge** for the source-linked passage from theta/local-matching premises to character nonvanishing. The pages and example JSON load from your own local development server.
 
 Alternatively, you can open \`viewer/index.html\` directly from your computer and choose **Open local JSON**. Browser security typically blocks the example-fetch buttons on \`file://\` URLs; the file-input option still works.
 
@@ -29,7 +29,7 @@ Alternatively, you can open \`viewer/index.html\` directly from your computer an
 
 ## Inputs and provenance
 
-Use the active [RH source-level theorem path](../examples/rh_critical_path.json). Historical non-RH engineering fixtures are retained but no longer shown as default choices.
+Choose the [RH critical path](../examples/rh_critical_path.json) or the [analytic bridge subgraph](../examples/rh_analytic_bridge.json). Historical non-RH engineering fixtures are retained but no longer shown as default choices.
 
 The Bitcoin proof has three **direct source-reference edges** supported by explicit theorem uses in the pinned solutions. Its two remaining edges are still only imported-theorem candidates. All explanatory relationships are in \`draft\` review status. See [BITCOIN-001](../audit/BITCOIN-001-SUPPLY.md) for a mathematical walkthrough.
 
