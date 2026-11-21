@@ -311,9 +311,6 @@
     }
   }
 
-  document.getElementById("bitcoin").addEventListener("click", function () {
-    loadExample("bitcoin_supply_proposal_linked.json", "Prove2me Bitcoin supply");
-  });
   document.getElementById("rh").addEventListener("click", function () {
     loadExample("rh_critical_path.json", "Alpöge RH source chain");
   });
