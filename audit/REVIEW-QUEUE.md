@@ -8,6 +8,8 @@ RH-only review plan. It borrows generic evidence and read-back methods from earl
 
 **A2. Explain `UpperTheory.Lit.every_character_of_theta_integrals_local_matching` — source type and argument map COMPLETE; substantive mathematical/Lean review OPEN.** [AUDIT-005](AUDIT-005-EXACT-THETA-BRIDGE.md) locates the actual seven-input theorem, maps every explicit caller argument and traces its use of `nonempty_hyps_definite_side_of_closed_bound` and `every_character_of_green_v_win`. The earlier [AUDIT-004](AUDIT-004-ANALYTIC-BRIDGE.md) describes a similar *different* `everyE₂` route. Next: expand the new theorem's structured hypotheses and the proof obligations of the nonempty-HypsAlt constructor; check elaborated dependencies and mathematical interpretation.
 
+**A2b. Audit the `AllRowsAlt` → `HypsAlt` witness transformation — source-field map COMPLETE, mathematical meaning OPEN.** [AUDIT-006](AUDIT-006-GLOBAL-WITNESS.md) follows 15 named helper calls from the theta/local-matching inputs into `Nonempty HypsAlt`, and the [field ledger](../examples/rh_witness_fields.json) verifies all 26 upstream row field names recur among the 46 downstream field names, with 46 corresponding assignments. The most important remaining work is independent review of `allRows_of_open0_alt`, `classSel`, the `Closed.sub` restrictions, the selected join's `Classical.choice`, and the non-vacuity of `DefiniteSideCondition`. A source-name match is not a proof of type or mathematical equivalence.
+
 **A3. Trace `UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter`.** Identify what `Row0b recT` means, how the theta-lift and Galois representation constructions establish it, and any assumptions encoded in types or instances.
 
 ## Priority B — independent formal-methods review
