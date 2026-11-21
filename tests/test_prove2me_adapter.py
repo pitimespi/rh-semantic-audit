@@ -9,7 +9,8 @@ from unittest import mock
 from semantic_graph.core import load, render_markdown, validate
 from semantic_graph.prove2me import (
     add_decompositions, bind_theorem_details, fetch_readonly, link_proposal,
-    lookup_theorem_exact, snapshot_hash, valid_uuid,
+    lookup_theorem_exact, snapshot_hash, valid_uuid, exchange_api_key,
+    access_token_from_environment,
 )
 
 
@@ -159,6 +160,50 @@ class Prove2meAdapterTests(unittest.TestCase):
             response = fetch_readonly(TID_SUPPLY, "theorem", "ephemeral-token")
             self.assertEqual(build.call_args.args[0].__class__.__name__, "_NeverRedirect")
         self.assertEqual(response["theorem_id"], TID_SUPPLY)
+
+    def test_exchange_api_key_only_posts_to_documented_endpoint(self):
+        class Response:
+            headers = {"Content-Type": "application/json"}
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self, *args):
+                return b'{"access_token":"short-lived-example","version":"0.8.1"}'
+
+        class Opener:
+            def open(self, request, timeout=None):
+                self_ref.assertEqual(request.get_method(), "POST")
+                self_ref.assertEqual(request.full_url, "https://prove2.me/api/v1/agent/refresh")
+                self_ref.assertEqual(request.get_header("Content-type"), "application/json")
+                self_ref.assertEqual(json.loads(request.data), {"api_key": "p2m_test-only"})
+                return Response()
+
+        self_ref = self
+        with mock.patch("semantic_graph.prove2me.urllib.request.build_opener", return_value=Opener()) as opener:
+            token = exchange_api_key("p2m_test-only")
+            self.assertEqual(opener.call_args.args[0].__class__.__name__, "_NeverRedirect")
+        self.assertEqual(token, "short-lived-example")
+
+    def test_environment_prefers_access_token_and_never_echoes_key(self):
+        with mock.patch("semantic_graph.prove2me.exchange_api_key", return_value="temporary") as exchange:
+            token = access_token_from_environment({"PROVE2ME_API_KEY": "p2m_secret-only"})
+            self.assertEqual(token, "temporary")
+            exchange.assert_called_once_with("p2m_secret-only")
+            token = access_token_from_environment({
+                "PROVE2ME_API_KEY": "p2m_secret-only",
+                "PROVE2ME_ACCESS_TOKEN": "provided-bearer",
+            })
+            self.assertEqual(token, "provided-bearer")
+            exchange.assert_called_once()
+
+    def test_rejects_missing_and_malformed_keys(self):
+        for key in ("", "dummy", "p2m_bad\nheader"):
+            with self.subTest(key=repr(key)):
+                with self.assertRaises(ValueError):
+                    exchange_api_key(key)
+        with self.assertRaisesRegex(ValueError, "Set PROVE2ME_ACCESS_TOKEN or PROVE2ME_API_KEY"):
+            access_token_from_environment({})
 
     def test_api_request_rejects_non_uuid(self):
         with self.assertRaises(ValueError):
