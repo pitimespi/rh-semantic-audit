@@ -6,7 +6,7 @@ RH-only review plan. It borrows generic evidence and read-back methods from earl
 
 **A1. Expand `OpenLiteratureStatements` at the composition boundary — source-level inventory COMPLETE, elaborated mathematical interpretation OPEN.** [AUDIT-003](AUDIT-003-OPEN-LITERATURE.md) identifies its three exact fields: two of type `UpperTheory.One.M.Row`, and one of type `UpperTheory.Zero.LLC.RecTExists`. The proof passes `⟨h, UpperTheory.Zero.LLC.recTExists, h⟩`. Next: explain the relationship of `Row0b` and `Row` with actual Lean elaboration; classify all field-defining prerequisites, rather than assuming they are automatically discharged mathematically.
 
-**A2. Explain `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`.** List hypotheses, their mathematical meaning, and the chain leading to the nonvanishing result. Avoid using filenames or theorem names as substitutes for explanations.
+**A2. Explain `UpperTheory.Lit.every_character_of_theta_integrals_local_matching` — still OPEN.** [AUDIT-004](AUDIT-004-ANALYTIC-BRIDGE.md) identifies an intermediate seven-input theorem `UpperTheory.Lit.everyE₂` and source-confirmed derivation of `EveryCharacter` via primitive-character nonvanishing and Euler factors. The missing critical step is establishing the exact fully elaborated declaration and how the central theorem supplies all seven inputs. Do not conflate these two results.
 
 **A3. Trace `UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter`.** Identify what `Row0b recT` means, how the theta-lift and Galois representation constructions establish it, and any assumptions encoded in types or instances.
 
