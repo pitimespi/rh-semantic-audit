@@ -50,10 +50,10 @@ The value we aim to add in later revisions is a **human-reviewed account of what
 | ID | Question | Required evidence | Status |
 |---|---|---|---|
 | LT-01 | What is the exact *type* and field structure of `OpenLiteratureStatements`? | Pinned definition and human-readable explanation of every field | Open |
-| LT-02 | What is the exact statement of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`? | Complete declaration type, including implicit parameters and instances, from Lean environment | Open |
+| LT-02 | What is the exact statement of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`? | **Source-level declaration FOUND** at `SiegelEisensteinSecondTermHypotheses.lean` L69–73, with seven explicit premises; see [AUDIT-005](AUDIT-005-EXACT-THETA-BRIDGE.md). Full elaboration, instances and kernel dependencies still require independent Lean work | Explicit type mapped; elaboration open |
 | LT-03 | What does `UpperTheory.Top.VWin` assert? | Expanded formal definitions and independent mathematical read-back | Open |
 | LT-04 | Which `published_results_*` facts are needed and where are they proved? | Pinned theorem/type inventory and proof-term dependency report | Open |
 | LT-05 | Which theta-integral/local-matching equalities supply the zero-free conclusion? | Stepwise expert argument matched to source, not naming-based inference | Open |
 | LT-06 | Are any literature facts genuinely unresolved assumptions? | Independent axiom audit/Lean environment check, not a regex scan | Open |
 
-**Provisional verdict:** The interface can be located, summarized, and linked reproducibly. The source alone does not yet support a mathematically complete interpretation. No defect is claimed.
+**Updated provisional verdict:** The interface and actual seven-premise central theorem are now located and mapped in [AUDIT-005](AUDIT-005-EXACT-THETA-BRIDGE.md). The source alone does not establish a mathematically complete interpretation or a kernel proof replay. No defect is claimed.
