@@ -13,6 +13,7 @@ on:
       - "tools/rh_interface_check.py"
       - "tools/rh_analytic_check.py"
       - "tools/rh_witness_fields.py"
+      - "tools/rh_minkowski_check.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   pull_request:
@@ -27,6 +28,7 @@ on:
       - "tools/rh_interface_check.py"
       - "tools/rh_analytic_check.py"
       - "tools/rh_witness_fields.py"
+      - "tools/rh_minkowski_check.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   workflow_dispatch:
@@ -64,3 +66,4 @@ jobs:
           python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_actual_bridge.json
           python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_witness_assembly.json
           python3 -m tools.rh_witness_fields --fetch-pinned --ledger examples/rh_witness_fields.json
+          python3 -m tools.rh_minkowski_check --fetch-pinned
