@@ -53,37 +53,32 @@ At [`TopPlug.lean` lines 12–15](https://github.com/Deicyde/riemann-hypothesis/
 
 Finally, [`imprimitive`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/Imprimitive.lean#L5-L35) obtains general-character nonvanishing through primitive reduction and nonzero Euler correction factors.
 
-## 4. Why this matters semantically
+## 4. Source-level dependency structure
 
-The source-level causal structure is now:
+The conditional wrapper `every_character_of_literature_of_vWin (O, hV)` constructs seven explicit inputs and applies the central theorem. **Inside that central theorem**, the source composes a definite-side global hypothesis witness with a Green/window bridge and finally the primitive-to-general-character argument:
 
 ```text
-  published_results_eigen O   published_results_first O
-                  \            /
-             theta agreement / local matching
-                     covolume bound
-                     RecTExists
-                         |
-                nonempty_hyps_definite_side_of_closed_bound
-                         |
-                    global HypsAlt
-                         |
-      Green + VWin ---> every_character_of_green_v_win
-                         |
-                   EveryCharacter
-                         |
-   (central every_character_of_theta_integrals_local_matching)
-                         |
-              every_character_of_literature_of_vWin
-                         |
-                everyCharacter_of_row
-                         |
-                   EveryCharacter
-                         |
-                        RH
+O : OpenLiteratureStatements        hV : VWin
+             |                         |
+             +--> P, F, hA, hM, hX, hL +
+                             |
+                             v
+   every_character_of_theta_integrals_local_matching
+          | builds global HypsAlt and Green data
+          v
+   every_character_of_green_v_win
+          | uses primitive zero-freeness
+          v
+     imprimitive (Euler-factor argument)
+          |
+          v
+    UpperTheory.EveryCharacter
+          |
+          v
+   higher RH conclusion theorems
 ```
 
-This text diagram is explanatory, **not a claim that every named upstream theorem has been independently audited**. The [machine-readable actual-bridge graph](../examples/rh_actual_bridge.json) records concrete source-reference edges.
+The first six terms are supplied by the literature wrapper; `hV` is passed through from the caller. The relevant machine-readable [actual-bridge graph](../examples/rh_actual_bridge.json) records only **source-reference** edges, not Lean-generated or independently audited kernel dependencies.
 
 ## 5. Non-equivalence of the earlier analogous `everyE₂` path
 
