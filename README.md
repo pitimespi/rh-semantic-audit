@@ -1,10 +1,16 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.5 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Status: early research prototype, v0.6 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
 
 A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
 
 This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+
+## API-key authentication for read-only Prove2me lookup (v0.6)
+
+The [Prove2me integration guide](docs/PROVE2ME-INTEGRATION.md) now documents secure **local use of a Prove2me API key**. Supply `PROVE2ME_API_KEY` as a local environment variable; the adapter exchanges it at the official Prove2me `/agent/refresh` endpoint for a short-lived access token, then performs read-only theorem and decomposition lookups. It also accepts an existing `PROVE2ME_ACCESS_TOKEN`.
+
+**No key has been shared with this repository or ChatGPT.** No live Prove2me query has been performed here. Tests mock the authentication endpoint and never send real credentials. Do not put keys in chat messages, public commits, repository secrets for untrusted workflows, or log files.
 
 ## Interactive viewer and source-grounded semantic proof (v0.5)
 
