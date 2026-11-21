@@ -1,0 +1,482 @@
+{
+  "schema_version": "semantic-proof-graph/v1",
+  "project": {
+    "id": "rh-actual-theta-bridge",
+    "title": "RH claimed proof — exact central theta and Green/window bridge",
+    "repository": "https://github.com/Deicyde/riemann-hypothesis",
+    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670",
+    "scope_note": "All source references checked syntactically. Mathematical correctness, elaboration, axiom provenance, and kernel proof-term dependencies remain unchecked. everyE₂ is a similar but different theorem, not a demonstrated direct premise here."
+  },
+  "nodes": [
+    {
+      "id": "eigen",
+      "symbol": "UpperTheory.LiteratureTheorems.published_results_eigen",
+      "title": "Assemble unitary-group global hypotheses",
+      "statement": "From O : OpenLiteratureStatements, construct the proposition S0.UnitaryGroupThirdPlaceHypotheses.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L666"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "OpenLiteratureStatements; field meaning remains under review"
+        }
+      ]
+    },
+    {
+      "id": "first",
+      "symbol": "UpperTheory.LiteratureTheorems.published_results_first",
+      "title": "Assemble local theta inputs",
+      "statement": "From O : OpenLiteratureStatements, construct GlobalTheory.FunPr.ThetaLocalInputs.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L727"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "OpenLiteratureStatements"
+        }
+      ]
+    },
+    {
+      "id": "thetaPair",
+      "symbol": "UpperTheory.LiteratureTheorems.theta_integrals_agree_and_local_matching_of_literature",
+      "title": "Construct theta-integral agreement and local matching",
+      "statement": "A paired theorem provides ThetaIntegralsAgree ∧ LocalMatching from O.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L565"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "OpenLiteratureStatements"
+        }
+      ]
+    },
+    {
+      "id": "covol",
+      "symbol": "SelfIntersectionVolumeEstimates.topCovolSlim2_use_alt_alt",
+      "title": "Construct covolume bound",
+      "statement": "Combines explicitly supplied geometric and positivity statements to establish GlobalTheory.CovTop.CovolumeBoundOfX.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopCovolSlim2Use.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopCovolSlim2Use.lean#L16"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "llc",
+      "symbol": "UpperTheory.LiteratureTheorems.local_langlands_gl_recT_exists_of_literature",
+      "title": "Supply RecTExists",
+      "statement": "From O : OpenLiteratureStatements establish UpperTheory.Zero.LLC.RecTExists.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L313"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "OpenLiteratureStatements"
+        }
+      ]
+    },
+    {
+      "id": "bound",
+      "symbol": "UpperTheory.N.boundAtTwoThree_linked_of_recT",
+      "title": "Construct parameter-indexed bound",
+      "statement": "From P.nLink and parametersOfDependence hL cDep, provide the LinkedAt condition required by nonempty_hyps_definite_side_of_closed_bound.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/At23OfAll.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/At23OfAll.lean#L24"
+      },
+      "assumptions": [
+        {
+          "name": "hP",
+          "meaning": "N-linked hypothesis package"
+        },
+        {
+          "name": "p",
+          "meaning": "Local/global parameters associated with RecTExists"
+        }
+      ]
+    },
+    {
+      "id": "nonempty",
+      "symbol": "UpperTheory.Lit.nonempty_hyps_definite_side_of_closed_bound",
+      "title": "Construct inhabited global hypotheses",
+      "statement": "From P,F,theta agreement, local matching, covolume bound, RecTExists and an indexed bound, produce Nonempty (HypsAlt S0.NL DefiniteSideCondition).",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L44"
+      },
+      "assumptions": [
+        {
+          "name": "P",
+          "meaning": "S0.UnitaryGroupThirdPlaceHypotheses"
+        },
+        {
+          "name": "F",
+          "meaning": "ThetaLocalInputs"
+        },
+        {
+          "name": "hA",
+          "meaning": "ThetaIntegralsAgree"
+        },
+        {
+          "name": "hM",
+          "meaning": "LocalMatching"
+        },
+        {
+          "name": "hX",
+          "meaning": "CovolumeBoundOfX"
+        },
+        {
+          "name": "hL",
+          "meaning": "RecTExists"
+        },
+        {
+          "name": "hN",
+          "meaning": "Parameter-indexed LinkedAt bound"
+        }
+      ]
+    },
+    {
+      "id": "greenZero",
+      "symbol": "UpperTheory.Top.zero_free_all_of_green_v_win",
+      "title": "Green and window imply primitive-character zero-freeness",
+      "statement": "Green, VWin and Nonempty (HypsAlt ... DefiniteSideCondition) imply Formalism.HC.ZeroFreeAll.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean#L12"
+      },
+      "assumptions": [
+        {
+          "name": "hG",
+          "meaning": "GlobalTheory.GLq.Green"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin"
+        },
+        {
+          "name": "h",
+          "meaning": "Nonempty (HypsAlt ... DefiniteSideCondition)"
+        }
+      ]
+    },
+    {
+      "id": "imprimitive",
+      "symbol": "UpperTheory.Top.imprimitive",
+      "title": "Primitive-to-general Euler factors",
+      "statement": "From ZeroFreeAll deduce nonvanishing for all Dirichlet characters with the stated exception, via primitive-character reduction and nonvanishing Euler factors.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/Imprimitive.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/Imprimitive.lean#L5"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "Formalism.HC.ZeroFreeAll"
+        }
+      ]
+    },
+    {
+      "id": "greenEvery",
+      "symbol": "UpperTheory.Top.every_character_of_green_v_win",
+      "title": "Green and window imply EveryCharacter",
+      "statement": "From Green, VWin and inhabited definite-side global hypotheses, apply zero_free_all_of_green_v_win and imprimitive to get EveryCharacter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean#L16"
+      },
+      "assumptions": [
+        {
+          "name": "hG",
+          "meaning": "GlobalTheory.GLq.Green"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin"
+        },
+        {
+          "name": "h",
+          "meaning": "Nonempty (HypsAlt ... DefiniteSideCondition)"
+        }
+      ]
+    },
+    {
+      "id": "thetaTarget",
+      "symbol": "UpperTheory.Lit.every_character_of_theta_integrals_local_matching",
+      "title": "Actual central seven-premise analytic theorem",
+      "statement": "Seven inputs P:UnitaryGroupThirdPlaceHypotheses, F:ThetaLocalInputs, hA:ThetaIntegralsAgree, hM:LocalMatching, hX:CovolumeBoundOfX, hL:RecTExists, hV:VWin imply EveryCharacter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L69"
+      },
+      "assumptions": [
+        {
+          "name": "P",
+          "meaning": "UnitaryGroupThirdPlaceHypotheses"
+        },
+        {
+          "name": "F",
+          "meaning": "ThetaLocalInputs"
+        },
+        {
+          "name": "hA",
+          "meaning": "ThetaIntegralsAgree"
+        },
+        {
+          "name": "hM",
+          "meaning": "LocalMatching"
+        },
+        {
+          "name": "hX",
+          "meaning": "CovolumeBoundOfX"
+        },
+        {
+          "name": "hL",
+          "meaning": "RecTExists"
+        },
+        {
+          "name": "hV",
+          "meaning": "VWin"
+        }
+      ]
+    },
+    {
+      "id": "outer",
+      "symbol": "UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin",
+      "title": "Supply the central theorem's seven premises",
+      "statement": "Given O:OpenLiteratureStatements and hV:VWin, construct P, F, theta/local matching, covolume and RecTExists and apply thetaTarget to obtain EveryCharacter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L810"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "OpenLiteratureStatements"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "d1",
+      "from": "eigen",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L812"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "Constructed UnitaryGroupThirdPlaceHypotheses becomes the central theorem's first explicit argument.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d2",
+      "from": "first",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L812"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "Constructed ThetaLocalInputs becomes the central theorem's second explicit argument.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d3",
+      "from": "thetaPair",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L812"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "The two projections supply ThetaIntegralsAgree and LocalMatching.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d4",
+      "from": "covol",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L813"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "Geometric/positivity premises are assembled into CovolumeBoundOfX.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d5",
+      "from": "llc",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L814"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "A literature theorem produces the RecTExists argument.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d6",
+      "from": "thetaTarget",
+      "to": "outer",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L812"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "The actual central theorem is applied to the seven constructed premises.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d7",
+      "from": "bound",
+      "to": "thetaTarget",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L73"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "The LinkedAt family bound is supplied by boundAtTwoThree_linked_of_recT.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d8",
+      "from": "nonempty",
+      "to": "thetaTarget",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L73"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "The definite-side global hypotheses are constructed from six inputs plus a bound.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d9",
+      "from": "greenEvery",
+      "to": "thetaTarget",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L72"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "The actual central theorem applies every_character_of_green_v_win, not everyE₂.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d10",
+      "from": "greenZero",
+      "to": "greenEvery",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean#L18"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "A primitive-character ZeroFreeAll result is supplied to the imprimitive theorem.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "d11",
+      "from": "imprimitive",
+      "to": "greenEvery",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopPlug.lean#L18"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem reference in pinned Lean source; not a kernel trace",
+        "explanation": "Nonvanishing of the primitive L-function is extended to all characters.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    }
+  ]
+}
