@@ -314,6 +314,9 @@
   document.getElementById("rh").addEventListener("click", function () {
     loadExample("rh_critical_path.json", "Alpöge RH source chain");
   });
+  document.getElementById("analytic").addEventListener("click", function () {
+    loadExample("rh_analytic_bridge.json", "RH analytic bridge — primitive to all characters");
+  });
   document.getElementById("upload").addEventListener("change", function (event) {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
