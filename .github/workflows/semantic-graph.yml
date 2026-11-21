@@ -1,0 +1,36 @@
+name: Semantic proof graph checks
+
+on:
+  push:
+    paths:
+      - "semantic_graph/**"
+      - "examples/**"
+      - "tests/**"
+      - ".github/workflows/semantic-graph.yml"
+  pull_request:
+    paths:
+      - "semantic_graph/**"
+      - "examples/**"
+      - "tests/**"
+      - ".github/workflows/semantic-graph.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate both semantic graph fixtures
+        run: |
+          python -m semantic_graph.cli validate examples/bitcoin_supply.json
+          python -m semantic_graph.cli validate examples/rh_critical_path.json
+          python -m semantic_graph.cli mermaid examples/rh_critical_path.json > /tmp/rh.mmd
+          python -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > /tmp/bitcoin-report.md
