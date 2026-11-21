@@ -1,45 +1,38 @@
-# Interactive semantic proof graph viewer (read-only)
+# RH Semantic Graph — interactive viewer
 
-The [viewer](../viewer/index.html) is a dependency-free browser interface for the versioned JSON graph files in this repository. It is intentionally **not** part of the Lean proof system or the Prove2me platform.
+The [viewer](../viewer/index.html) displays **source-linked, provisional semantic theorem graphs** for the claimed RH formalization. It does not run Lean, use authentication, or change theorem/research submissions.
 
-## Running locally
+## Run locally
 
-From the root of a local clone of this repository, run:
+From a clone of this repository:
 
-\`\`\`sh
+```bash
 python3 -m http.server 8000
-\`\`\`
+```
 
-Open \`http://localhost:8000/viewer/\` in a modern browser. Choose **RH theorem chain** for the headline path or **Analytic bridge** for the source-linked passage from theta/local-matching premises to character nonvanishing. The pages and example JSON load from your own local development server.
+Visit `http://localhost:8000/viewer/` in a browser. The three RH-only views are:
 
-Alternatively, you can open \`viewer/index.html\` directly from your computer and choose **Open local JSON**. Browser security typically blocks the example-fetch buttons on \`file://\` URLs; the file-input option still works.
+1. **Actual central RH bridge (recommended):** [`rh_actual_bridge.json`](../examples/rh_actual_bridge.json). Maps the real `every_character_of_theta_integrals_local_matching` theorem, its seven supplied premises, its definite-side `HypsAlt` construction, and the Green/window to nonvanishing step. See [AUDIT-005](../audit/AUDIT-005-EXACT-THETA-BRIDGE.md).
+2. **Headline theorem chain:** [`rh_critical_path.json`](../examples/rh_critical_path.json). Source-linked route from Galois/row witnesses to the final RH statement, now including the actual central theta theorem.
+3. **Earlier analogous bridge (comparison only):** [`rh_analytic_bridge.json`](../examples/rh_analytic_bridge.json). A different theorem, `everyE₂`, with different analytic hypotheses. It is **not** established as a direct dependency of the headline route.
 
-## Features
+The **Open local JSON** option works without a local web server. It uses `FileReader` in the browser; the file is not uploaded. The example-loading buttons usually need `http://localhost` because modern browsers restrict `file://` fetches.
 
-- Theorems are nodes, with arrows from *premises → conclusions*.
-- Source references, import candidates, platform decomposition children, and kernel-level dependencies are visually distinguished.
-- Selecting a node displays a human-readable statement, its source, assumptions, local proposal records or cached platform theorem ID, incoming prerequisites, downstream uses, explanatory prose, and review status.
-- Every source link is pinned to a Git commit in the JSON fixture.
-- The file uploader uses the browser's local \`FileReader\`. It does not transmit your graph data to an external service.
-- No cookies, API access tokens, third-party JavaScript libraries, external fonts or trackers are used.
-- The viewer escapes imported text via DOM \`textContent\` and only makes explicit source links to HTTPS GitHub URLs.
-- The output remains read-only: the viewer does not edit source graphs or change a theorem's review status.
+## Read the graph critically
 
-**Limitations:** The SVG layout is designed for curated graphs with at most 500 nodes and 2,000 edges, not a 17-million-line proof. It does not validate Lean syntax, prove theorem statements, inspect \`.olean\` files, resolve implicit elaboration dependencies, or fetch authenticated Prove2me data. Run the Python validator first on any third-party JSON input; the viewer performs only lightweight structural checks.
+Each node displays a source-pinned statement, currently recorded assumptions and a plain-language mathematical read-back. Each edge displays an evidence grade, a source citation, a proposed mathematical role and review status.
 
-## Inputs and provenance
+All edges in the current RH fixtures are **source references**, not independently extracted Lean kernel proof-term dependencies. No mathematical explanation is marked independently reviewed. If two theorem types appear analogous, the interface does not assume they are definitionally or mathematically equivalent.
 
-Choose the [RH critical path](../examples/rh_critical_path.json) or the [analytic bridge subgraph](../examples/rh_analytic_bridge.json). Historical non-RH engineering fixtures are retained but no longer shown as default choices.
+This viewer uses a bounded SVG DAG layout, not a tool for hundreds of thousands of declarations. It avoids external JavaScript packages, trackers, third-party fonts and credentials. Imported prose is inserted as text rather than HTML. Run `python3 -m semantic_graph.cli validate examples/rh_actual_bridge.json` on new JSON before relying on its structural integrity.
 
-The Bitcoin proof has three **direct source-reference edges** supported by explicit theorem uses in the pinned solutions. Its two remaining edges are still only imported-theorem candidates. All explanatory relationships are in \`draft\` review status. See [BITCOIN-001](../audit/BITCOIN-001-SUPPLY.md) for a mathematical walkthrough.
+## Source reproducibility
 
-The viewer never uses API credentials. The present research scope is only the purported RH formalization; no Prove2me platform submission has been made.
+GitHub CI runs the Python graph validator, JavaScript syntax check and automated source-line verification against the immutable mirror commit. To run the RH source checks locally from the repository root:
 
-## Future viewer additions
+```bash
+python3 tools/rh_interface_check.py --fetch-pinned
+python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_actual_bridge.json
+```
 
-- Filter by proof-relevant edge evidence (not all imports).
-- Highlight which assumptions of one theorem are discharged by a particular premise.
-- Integrate true kernel-exported dependency certificates as a separate evidence layer.
-- Provide an independent review workflow and compare two separate read-backs.
-
-No community engagement has been initiated.
+These are **textual source correspondence checks**, not mathematical, elaboration, kernel or axiom audits.
