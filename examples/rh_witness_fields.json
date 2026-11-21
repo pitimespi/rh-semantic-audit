@@ -422,5 +422,194 @@
       "assignment_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L101",
       "review_status": "syntax_only"
     }
-  ]
+  ],
+  "row_package": {
+    "type": "GlobalTheory.Fc.AllRowsAlt : Prop",
+    "source_path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean",
+    "field_correspondence": "26 names also appear as HypsAlt record fields; this is a NAME match, not a theorem dependency or type equality proof",
+    "fields": [
+      {
+        "field": "hn4",
+        "declaration_line": 14,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L14",
+        "downstream_witness_field": "hn4",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "jOn",
+        "declaration_line": 15,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L15",
+        "downstream_witness_field": "jOn",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hInstR",
+        "declaration_line": 16,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L16",
+        "downstream_witness_field": "hInstR",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aC2",
+        "declaration_line": 17,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L17",
+        "downstream_witness_field": "aC2",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aP10",
+        "declaration_line": 18,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L18",
+        "downstream_witness_field": "aP10",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aAtG",
+        "declaration_line": 19,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L19",
+        "downstream_witness_field": "aAtG",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aPt0",
+        "declaration_line": 20,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L20",
+        "downstream_witness_field": "aPt0",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aPtTw",
+        "declaration_line": 21,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L21",
+        "downstream_witness_field": "aPtTw",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aPer0",
+        "declaration_line": 22,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L22",
+        "downstream_witness_field": "aPer0",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "aPerTw",
+        "declaration_line": 23,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L23",
+        "downstream_witness_field": "aPerTw",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "tie",
+        "declaration_line": 24,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L24",
+        "downstream_witness_field": "tie",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hRB",
+        "declaration_line": 25,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L25",
+        "downstream_witness_field": "hRB",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hTw",
+        "declaration_line": 26,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L26",
+        "downstream_witness_field": "hTw",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hPA",
+        "declaration_line": 27,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L27",
+        "downstream_witness_field": "hPA",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hLamP",
+        "declaration_line": 28,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L28",
+        "downstream_witness_field": "hLamP",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hDivG",
+        "declaration_line": 29,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L29",
+        "downstream_witness_field": "hDivG",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hDcPtG",
+        "declaration_line": 30,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L30",
+        "downstream_witness_field": "hDcPtG",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "selJ",
+        "declaration_line": 31,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L31",
+        "downstream_witness_field": "selJ",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "sLp",
+        "declaration_line": 32,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L32",
+        "downstream_witness_field": "sLp",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "sO",
+        "declaration_line": 33,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L33",
+        "downstream_witness_field": "sO",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hServ",
+        "declaration_line": 34,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L34",
+        "downstream_witness_field": "hServ",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "zL",
+        "declaration_line": 35,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L35",
+        "downstream_witness_field": "zL",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "hTF",
+        "declaration_line": 36,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L36",
+        "downstream_witness_field": "hTF",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "c30",
+        "declaration_line": 37,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L37",
+        "downstream_witness_field": "c30",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "rRows",
+        "declaration_line": 38,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L38",
+        "downstream_witness_field": "rRows",
+        "correspondence_kind": "name_only"
+      },
+      {
+        "field": "nRest",
+        "declaration_line": 39,
+        "declaration_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L39",
+        "downstream_witness_field": "nRest",
+        "correspondence_kind": "name_only"
+      }
+    ]
+  }
 }
