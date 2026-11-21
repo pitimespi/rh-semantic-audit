@@ -1,7 +1,7 @@
 # RH Semantic Audit
 
 **Active research focus: the claimed Lean formalization of the Riemann Hypothesis, exclusively.**  
-**Version:** 0.10 · **Baseline:** third-party verification mirror at commit `e50d09817ad81469f737e8f637561e6ccf86c670`.
+**Version:** 0.11 · **Baseline:** third-party verification mirror at commit `e50d09817ad81469f737e8f637561e6ccf86c670`.
 
 This project develops an **evidence-aware semantic proof graph** for the purported RH formalization announced by Levent Alpöge on November 20, 2026. It distinguishes the meaning of a formal theorem, the assumptions feeding it, source-text connections, and actual Lean kernel dependencies. The goal is to explain the mathematics *without overstating what source inspection has established*.
 
@@ -17,6 +17,9 @@ This project develops an **evidence-aware semantic proof graph** for the purport
 | [RH semantic graph](examples/rh_critical_path.json) | Selected source-linked theorem nodes, human-readable assumptions and draft explanations |
 | **[AUDIT-005: exact central theorem](audit/AUDIT-005-EXACT-THETA-BRIDGE.md)** | Locates the actual seven-premise theorem, all seven caller arguments, and the definite-side Green/window route |
 | **[Actual RH theorem bridge graph](examples/rh_actual_bridge.json)** | Twelve nodes and eleven source-confirmed theorem invocations along the central route |
+| **[AUDIT-006: global witness assembly](audit/AUDIT-006-GLOBAL-WITNESS.md)** | Follows the theta/local-matching premises through the grid, linked-bundle and selected-row stages |
+| **[RH witness-assembly graph](examples/rh_witness_assembly.json)** | Sixteen named proof-step nodes and fifteen pinned source-reference edges |
+| **[26→46 field correspondence ledger](examples/rh_witness_fields.json)** | All 26 upstream `AllRowsAlt` field names map to field names in the 46-field `HypsAlt` constructor; correspondence is syntactic only |
 | [AUDIT-004](audit/AUDIT-004-ANALYTIC-BRIDGE.md) | Earlier analogous seven-premise theorem `everyE₂`; not the direct central theorem route |
 | [Earlier analytic subgraph](examples/rh_analytic_bridge.json) | Comparative theorem route, not demonstrated as a direct dependency of the headline |
 | [Review queue](audit/REVIEW-QUEUE.md) | Prioritized mathematical and formal-methods checks |
@@ -42,6 +45,14 @@ The [literature caller](https://github.com/Deicyde/riemann-hypothesis/blob/e50d0
 
 This is **not the same** as the similarly named and earlier [`everyE₂`](audit/AUDIT-004-ANALYTIC-BRIDGE.md), which uses different geometric/local-Langlands assumptions. [AUDIT-005](audit/AUDIT-005-EXACT-THETA-BRIDGE.md) and the [actual graph](examples/rh_actual_bridge.json) document the correction. The direct source-level theorem path is now known; its mathematical validity and fully elaborated dependencies are **not** independently checked.
 
+## New source-level result: 26 upstream row fields → 46 downstream witness fields
+
+The central theorem calls [`nonempty_hyps_definite_side_of_closed_bound`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L44-L68). We traced its two grid thresholds, `max CF0 CF1`, functional and covolume `LinkedAt` evidence, and the theorem producing `Nonempty HypsAlt`.
+
+That stage obtains a [26-field `AllRowsAlt : Prop`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L12-L39). **All 26 of its field names reappear** in the downstream [46-field `HypsAlt : Type 1`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/Hyps.lean#L22-L90). The final record constructor assigns all 46 names. Source-pinned CI compares the field names and their declaration/assignment lines and checks all 15 named theorem calls in the [witness graph](examples/rh_witness_assembly.json).
+
+**These are name correspondences, not proof-term dependencies or evidence of mathematical equivalence.** In particular, some fields are transformed by closed-family restriction and one uses `Classical.choice`. See [AUDIT-006](audit/AUDIT-006-GLOBAL-WITNESS.md) for the exact bounds and review questions.
+
 ## Research program
 
 Our next original work is to produce an independently reviewable mathematical explanation of:
@@ -54,7 +65,7 @@ A meaningful contribution must provide **more mathematical substance and evidenc
 
 ## Explore the RH graph locally
 
-The [offline viewer](viewer/index.html) provides three RH views: **actual central theta bridge** (recommended), headline critical path, and the earlier analogous analytic route. Each shows statements, prerequisites, evidence classes, source links and review status.
+The [offline viewer](viewer/index.html) provides four RH views: **actual central theta bridge** (recommended), **46-field witness assembly**, headline critical path, and the earlier analogous analytic route. Each shows statements, prerequisites, evidence classes, source links and review status.
 
 ```sh
 python3 -m http.server 8000
@@ -67,10 +78,13 @@ The reusable engine remains in [`semantic_graph/`](semantic_graph/), with a JSON
 ```sh
 python3 -m semantic_graph.cli validate examples/rh_critical_path.json
 python3 -m semantic_graph.cli validate examples/rh_actual_bridge.json
+python3 -m semantic_graph.cli validate examples/rh_witness_assembly.json
 python3 -m semantic_graph.cli validate examples/rh_analytic_bridge.json
 python3 -m semantic_graph.cli mermaid examples/rh_critical_path.json > rh.mmd
 python3 -m semantic_graph.cli report examples/rh_critical_path.json --target headline > rh-review.md
 python3 -m semantic_graph.cli report examples/rh_actual_bridge.json --target outer > rh-actual-review.md
+python3 -m tools.rh_witness_fields --fetch-pinned --ledger examples/rh_witness_fields.json
+python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_witness_assembly.json
 python3 -m semantic_graph.cli report examples/rh_analytic_bridge.json --target everyE2 > rh-analogous-review.md
 python3 -m unittest discover -s tests -v
 ```
