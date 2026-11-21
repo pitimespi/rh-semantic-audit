@@ -40,7 +40,7 @@ The use of `max CF0 CF1` is a **quantifier/parameter synchronization** step: the
 
 The next theorem, [`GlobalTheory.Fc.S0.StageU.hypotheses_nonempty_of_unramified_exponents_alt`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L41-L59), first constructs a large-unramified-exponent bundle, extracts geometric/Galois inputs, transports a family norm bound, and obtains an `AllRowsAlt` package from `allRows_of_open0_alt`.
 
-At [line 57](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L57) it calls `GlobalTheory.Fc.nonempty_hyps_of_allRows_alt` to produce the inhabited global witness. The `AllRowsAlt` package is itself a `Prop` structure with **26 named fields** documented at [AllRows.lean lines 12–39](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L12-L39). Its fields concern counting, selected rows, period and twist conditions, bounds, and other named predicates. *Those labels are still not independently expanded into their complete mathematical definitions.*
+At [line 57](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L57) it calls `GlobalTheory.Fc.nonempty_hyps_of_allRows_alt` to produce the inhabited global witness. The `AllRowsAlt` package is itself a `Prop` structure with **26 named fields** documented at [AllRows.lean lines 12–39](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AllRows.lean#L12-L39). **All 26 names are also field names in the downstream 46-field `HypsAlt` structure**, as the [machine-readable crosswalk](../examples/rh_witness_fields.json) demonstrates. This is a correspondence of *names*, not a proof that their propositions are identical or that row assertions carry over without transformations. Its fields concern counting, selected rows, period and twist conditions, bounds, and other named predicates. *Those labels are still not independently expanded into their complete mathematical definitions.*
 
 The constructor theorem [`nonempty_hyps_of_allRows_alt`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L19-L101) combines those row conditions, invokes `UpperTheory.Top.classSel` to select a family and associated data, and fills a `HypsAlt` record.
 
@@ -48,7 +48,7 @@ The constructor theorem [`nonempty_hyps_of_allRows_alt`](https://github.com/Deic
 
 [`GlobalTheory.Fc.HypsAlt`](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/Hyps.lean#L22-L90) is explicitly a dependent `Type 1` structure with **46 named fields**, not just an abbreviation for `True`. The [final record literal](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L55-L101) assigns **46 field names in the same order**.
 
-The [machine-readable field ledger](../examples/rh_witness_fields.json) records, for each name:
+The [machine-readable field ledger](../examples/rh_witness_fields.json) records the 26 upstream row fields and 46 witness fields, with an explicit name-only crosswalk. For each witness field it records:
 
 - its declaration location;
 - its constructor-assignment location;
@@ -59,7 +59,7 @@ The proof contains a visible classical choice at `selJ`, where a dependent selec
 
 Other fields are transferred via `Formalism.MainNotions.Pk.Closed.sub`, which should be audited as restrictions of closed-family predicates and not automatically identified with the unchanged original predicates.
 
-**What the equality of field names establishes:** the exact source-level record has no *missing or extra named assignments*. It does **not** establish that an elaborated Lean term type-checks, that any prerequisite theorem holds mathematically, or that a consequence is non-vacuous. Those stronger checks require a Lean environment and mathematical review.
+**What the name crosswalk establishes:** all 26 upstream row names reappear downstream, and the exact source-level 46-field record has no *missing or extra named assignments*. It does **not** establish that an elaborated Lean term type-checks, that any prerequisite theorem holds mathematically, or that a consequence is non-vacuous. Those stronger checks require a Lean environment and mathematical review.
 
 ## 5. The definite-side condition is a real dependent predicate, not a magic label
 
@@ -77,4 +77,4 @@ This is not syntactically the literal `True`. However, source-level inspection h
 | Second | Can the `DefiniteSideCondition` antecedents be satisfied for the constructed families? | Inspect definitions and prove or exhibit appropriate non-vacuity/useful instantiations |
 | Third | Is the actual proof free of unexpected axioms beyond accepted Lean foundations? | Kernel-built axiom report and proof-term dependency extraction; not GitHub text search |
 
-**Status:** The source-level assembly is now mapped down to a **26-field row proposition** and a **46-field dependent witness**. There is no new claim that RH is valid or invalid. The mathematical soundness of the row-to-witness transformations is the next independent review boundary.
+**Status:** The source-level assembly is now mapped through the [15 named source-reference invocations](../examples/rh_witness_assembly.json), a **26-field row proposition** and a **46-field dependent witness**, with a CI-checked name-only crosswalk. There is no new claim that RH is valid or invalid. The mathematical soundness of the row-to-witness transformations is the next independent review boundary.
