@@ -1,10 +1,37 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.2 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Status: early research prototype, v0.3 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
 
 A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
 
 This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+
+## Reusable semantic proof graph prototype (v0.3)
+
+This repository now includes a **provider-neutral semantic graph engine** that can examine selected theorem paths from **Bitcoin/Prove2me** and **Alpöge's RH proof**. Both examples are pinned to full repository commit SHAs.
+
+| Component | Purpose |
+|---|---|
+| [`semantic_graph/core.py`](semantic_graph/core.py) | Versioned JSON graph contract, integrity checks, dependency queries, Markdown and Mermaid renderers |
+| [`semantic_graph/cli.py`](semantic_graph/cli.py) | Validate, visualize, explain, and verify imported-theorem candidates against a local pinned checkout |
+| [Bitcoin supply example](examples/bitcoin_supply.json) | Actual theorem names, reachability assumptions and candidate imports from the [Prove2me Bitcoin formalization](https://github.com/pitimespi/prove2me) |
+| [RH critical path example](examples/rh_critical_path.json) | Selected, manually traced theorem references in the RH mirror |
+| [`tests/test_semantic_graph.py`](tests/test_semantic_graph.py) | Schema, edge semantics, provenance, and regression checks |
+| [Design and usage](docs/SEMANTIC-GRAPH.md) | Trust model, extension points, limitations, and next milestones |
+
+Run locally from this repository (Python 3.10+; standard library only):
+
+```sh
+python3 -m semantic_graph.cli validate examples/bitcoin_supply.json
+python3 -m semantic_graph.cli validate examples/rh_critical_path.json
+python3 -m semantic_graph.cli mermaid examples/rh_critical_path.json > rh.mmd
+python3 -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > bitcoin-supply.md
+python3 -m unittest discover -s tests -v
+```
+
+The Bitcoin fixture marks edges as **`import_candidate`**, because the referenced proof file imports these published theorem stubs; import alone does not establish a genuine proof-term dependency. RH fixture edges are **`source_reference`**, not independently extracted kernel dependencies. There are **no** `kernel_dependency` edges in either fixture. An edge's interpretation is a separately versioned human-reviewable annotation, initially `draft`. Two independent reviewers are required before an annotation may be marked `independent_review`.
+
+This project is *not* currently integrated with the Prove2me platform's private APIs and has not been submitted to its maintainers. The engine is an experimental research prototype, not a Lean theorem prover, formal certificate checker, or guarantee of mathematical truth. **Community outreach remains on hold.**
 
 ## Contents
 
