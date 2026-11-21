@@ -59,7 +59,7 @@ def fetch_pinned_sources(graph):
     files = {e["evidence"]["source"]["path"]
              for e in graph["edges"] if e["kind"] == "source_reference"}
     files |= {n["source"]["path"] for n in graph["nodes"]}
-    if len(files) > 12:
+    if len(files) > 20:
         raise ValueError("Unexpectedly many source files")
     for file in files:
         if not file.startswith("src/Development/AutomorphicArithmetic/") or ".." in file.split("/"):
