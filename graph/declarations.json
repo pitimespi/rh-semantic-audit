@@ -1,0 +1,153 @@
+{
+  "description": "Selected, manually confirmed source-level theorem-path map. NOT complete elaborated Lean dependency graph.",
+  "source_mirror": "https://github.com/Deicyde/riemann-hypothesis",
+  "commit": "e50d09817ad81469f737e8f637561e6ccf86c670",
+  "declarations": [
+    {
+      "id": "row",
+      "name": "UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter",
+      "file": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean",
+      "line": 6,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean#L6",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "vwin",
+      "name": "UpperTheory.One.vwin_of_row",
+      "file": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean",
+      "line": 4,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean#L4",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "literature",
+      "name": "UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin",
+      "file": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+      "line": 810,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L810",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "bridge",
+      "name": "UpperTheory.FinalTheorems.everyCharacter_of_row",
+      "file": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+      "line": 7,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean#L7",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "every",
+      "name": "UpperTheory.FinalTheorems.everyCharacter",
+      "file": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+      "line": 10,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean#L10",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "predicate",
+      "name": "UpperTheory.EveryCharacter",
+      "file": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+      "line": 13,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L13",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "allchi",
+      "name": "allChi",
+      "file": "src/Supplements/Kernels/MainTheorems.lean",
+      "line": 7,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean#L7",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "rh_from_right",
+      "name": "Formalism.VW.rh_of_right",
+      "file": "src/Formalism/GammaFactorNonvanishing/RhOfRight.lean",
+      "line": 5,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L5",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "rh_of_every",
+      "name": "Formalism.VW.rh_of_every",
+      "file": "src/Formalism/GammaFactorNonvanishing/CritLine.lean",
+      "line": 29,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Formalism/GammaFactorNonvanishing/CritLine.lean#L29",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "rh_of_all",
+      "name": "rhOfAll",
+      "file": "src/Supplements/Kernels/MainTheorems.lean",
+      "line": 9,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean#L9",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    },
+    {
+      "id": "headline",
+      "name": "riemannHypothesis",
+      "file": "src/Main.lean",
+      "line": 4,
+      "source_url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Main.lean#L4",
+      "read_from_pinned_source": true,
+      "review_status": "source-level located; mathematical prerequisites not exhaustively reviewed"
+    }
+  ],
+  "source_edges": [
+    {
+      "from": "row",
+      "to": "every",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "literature",
+      "to": "bridge",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "vwin",
+      "to": "bridge",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "bridge",
+      "to": "every",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "every",
+      "to": "allchi",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "allchi",
+      "to": "rh_of_all",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "rh_from_right",
+      "to": "rh_of_every",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "rh_of_every",
+      "to": "rh_of_all",
+      "type": "source-level use or composition"
+    },
+    {
+      "from": "rh_of_all",
+      "to": "headline",
+      "type": "source-level use or composition"
+    }
+  ]
+}
