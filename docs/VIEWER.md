@@ -10,7 +10,7 @@ From the root of a local clone of this repository, run:
 python3 -m http.server 8000
 \`\`\`
 
-Open \`http://localhost:8000/viewer/\` in a modern browser. Choose **Bitcoin supply example** or **RH theorem chain**. The pages and example JSON load from your own local development server.
+Open \`http://localhost:8000/viewer/\` in a modern browser. Choose **Explore RH theorem chain**. The pages and example JSON load from your own local development server.
 
 Alternatively, you can open \`viewer/index.html\` directly from your computer and choose **Open local JSON**. Browser security typically blocks the example-fetch buttons on \`file://\` URLs; the file-input option still works.
 
@@ -29,14 +29,11 @@ Alternatively, you can open \`viewer/index.html\` directly from your computer an
 
 ## Inputs and provenance
 
-Try these checked-in files:
-
-- [Bitcoin supply, with locally recorded proposal items](../examples/bitcoin_supply_proposal_linked.json).
-- [RH source-level theorem path](../examples/rh_critical_path.json).
+Use the active [RH source-level theorem path](../examples/rh_critical_path.json). Historical non-RH engineering fixtures are retained but no longer shown as default choices.
 
 The Bitcoin proof has three **direct source-reference edges** supported by explicit theorem uses in the pinned solutions. Its two remaining edges are still only imported-theorem candidates. All explanatory relationships are in \`draft\` review status. See [BITCOIN-001](../audit/BITCOIN-001-SUPPLY.md) for a mathematical walkthrough.
 
-For authenticated, read-only lookup of Prove2me theorem and sketch identifiers, see the separate [integration guide](PROVE2ME-INTEGRATION.md). The viewer itself never uses API credentials.
+The viewer never uses API credentials. The present research scope is only the purported RH formalization; no Prove2me platform submission has been made.
 
 ## Future viewer additions
 
