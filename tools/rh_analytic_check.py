@@ -77,11 +77,12 @@ def fetch_pinned_sources(graph):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--graph", default=str(GRAPH), help="Path to RH graph fixture at the pinned mirror revision")
     parser.add_argument("--fetch-pinned", action="store_true")
     args = parser.parse_args(argv)
     if not args.fetch_pinned:
         parser.error("Pass --fetch-pinned to run this source-text checker")
-    graph = load(GRAPH)
+    graph = load(args.graph)
     results = source_line_checks(graph, fetch_pinned_sources(graph))
     print(json.dumps({
         "type": "source-line syntactic checks only; NOT Lean/kernel review",
