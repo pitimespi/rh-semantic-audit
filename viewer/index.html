@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Semantic Proof Graph — Research Prototype</title>
+<title>RH Semantic Proof Graph — Research Prototype</title>
 <style>
 :root{color-scheme:light;--ink:#18252b;--muted:#63737c;--surface:#fff;--bg:#f4f7f8;--line:#dce3e7;--accent:#0b6f77;--subtle:#e4f3f4;--danger:#ba6137}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.48 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -39,16 +39,15 @@ aside{background:var(--surface);border-left:1px solid var(--line);overflow:auto;
 <body>
 <header>
   <div>
-    <h1>Semantic Proof Graph</h1>
-    <p>Evidence-aware explanations of theorem relationships · read-only research prototype</p>
+    <h1>RH Semantic Proof Graph</h1>
+    <p>Exploring the claimed Lean formalization of RH · source-linked, read-only research prototype</p>
   </div>
   <a href="https://github.com/pitimespi/rh-semantic-audit" target="_blank" rel="noopener noreferrer">Project repository</a>
 </header>
 <div class="toolbar">
-  <button id="bitcoin" type="button">Bitcoin supply example</button>
-  <button id="rh" type="button">RH theorem chain</button>
+  <button id="rh" type="button">Explore RH theorem chain</button>
   <label class="file-button" for="upload">Open local JSON <input id="upload" type="file" accept=".json,application/json"></label>
-  <span id="status" aria-live="polite">Select an example or open a local graph file.</span>
+  <span id="status" aria-live="polite">Choose the RH graph or open a local JSON file.</span>
   <div class="micro"><span class="pill"><i class="dot import"></i>Import</span><span class="pill"><i class="dot"></i>Source</span><span class="pill"><i class="dot platform"></i>Platform sketch</span><span class="pill"><i class="dot kernel"></i>Kernel trace</span></div>
 </div>
 <main class="layout">
