@@ -5,6 +5,7 @@ on:
     paths:
       - "semantic_graph/**"
       - "examples/rh_critical_path.json"
+      - "examples/rh_analytic_bridge.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
       - "viewer/**"
@@ -13,6 +14,7 @@ on:
     paths:
       - "semantic_graph/**"
       - "examples/rh_critical_path.json"
+      - "examples/rh_analytic_bridge.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
       - "viewer/**"
@@ -35,9 +37,13 @@ jobs:
       - name: Validate RH graph and generate reports
         run: |
           python -m semantic_graph.cli validate examples/rh_critical_path.json
+          python -m semantic_graph.cli validate examples/rh_analytic_bridge.json
+          python -m semantic_graph.cli report examples/rh_analytic_bridge.json --target everyE2 > /tmp/analytic-report.md
           python -m semantic_graph.cli mermaid examples/rh_critical_path.json > /tmp/rh.mmd
           python -m semantic_graph.cli report examples/rh_critical_path.json --target headline > /tmp/rh-report.md
       - name: Check RH viewer JavaScript
         run: node --check viewer/viewer.js
       - name: Check source-level RH assumptions against pinned mirror
-        run: python3 tools/rh_interface_check.py --fetch-pinned
+        run: |
+          python3 tools/rh_interface_check.py --fetch-pinned
+          python3 -m tools.rh_analytic_check --fetch-pinned
