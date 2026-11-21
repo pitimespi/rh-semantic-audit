@@ -49,7 +49,7 @@ The concluding Lean proof uses \`omega\`; that tactic is **not** the source of t
 [\`Sol_BitcoinSupply_supply_bound.lean\` lines 311–329](https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean#L311-L329) proves the invariant by induction on \`BitcoinBlockV2.Reachable S\`.
 
 - **Genesis:** the initial state and issuance definitions establish the initial inequality.
-- **Inductive step:** a validated next block transforms \`S\` to \`S'\`. The proof explicitly invokes [\`BitcoinSupply.block_supply\` at line 321](https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean#L321), constraining the increase in UTXO value by at most that height's subsidy.
+- **Inductive step:** a validated next block transforms \`S\` to \`S'\`. The proof explicitly invokes [\`BitcoinSupply.block_supply\` at line 320](https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean#L320), constraining the increase in UTXO value by at most that height's subsidy.
 - **Height/issuance correspondence:** \`BitcoinBlockV2.apply_spec\` is used to derive the new height and to establish the issuance recurrence. The inductive inequality then extends to the new state.
 
 This explains the progression: **local per-block minting constraint → invariant across reachable chains → global UTXO supply ceiling.**
@@ -58,7 +58,7 @@ This explains the progression: **local per-block minting constraint → invarian
 
 | Candidate relationship | Evidence in proof source | Classification |
 |---|---|---|
-| \`block_supply → supply_bound\` | Explicit theorem application at supply_bound solution line 321 | \`source_reference\` |
+| \`block_supply → supply_bound\` | Explicit theorem application at supply_bound solution line 320 | \`source_reference\` |
 | \`supply_bound → supply_lt_maxMoney\` | Explicit theorem application at final solution line 314 | \`source_reference\` |
 | \`issuance_bound → supply_lt_maxMoney\` | Explicit theorem application at final solution line 315 | \`source_reference\` |
 | \`issuance_bound → supply_bound\` | Imported by the supply_bound solution; not directly invoked by the visible final invariant proof | \`import_candidate\` |
