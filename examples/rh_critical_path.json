@@ -1,0 +1,307 @@
+{
+  "schema_version": "semantic-proof-graph/v1",
+  "project": {
+    "id": "alpoge-rh",
+    "title": "Alpöge RH — selected semantic theorem path (not a complete dependency graph)",
+    "repository": "https://github.com/Deicyde/riemann-hypothesis",
+    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670"
+  },
+  "nodes": [
+    {
+      "id": "row",
+      "symbol": "UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter",
+      "title": "Galois/automorphic input",
+      "statement": "A Row0b recT witness is constructed from a theta-lift theorem.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "vwin",
+      "symbol": "UpperTheory.One.vwin_of_row",
+      "title": "Analytic-window construction",
+      "statement": "A Row0b input is used to build the VWin proposition.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "A Row0b witness containing local correspondence data."
+        }
+      ]
+    },
+    {
+      "id": "literature",
+      "symbol": "UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin",
+      "title": "Literature/theta-to-nonvanishing bridge",
+      "statement": "Given OpenLiteratureStatements and VWin, conclude EveryCharacter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean"
+      },
+      "assumptions": [
+        {
+          "name": "O",
+          "meaning": "An explicit bundle of statements represented by OpenLiteratureStatements."
+        },
+        {
+          "name": "hV",
+          "meaning": "An analytic window witness."
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "symbol": "UpperTheory.FinalTheorems.everyCharacter_of_row",
+      "title": "Row-to-every-character bridge",
+      "statement": "Given Row0b data, construct a proof of the zero-free statement for Dirichlet characters.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "A Row0b witness."
+        }
+      ]
+    },
+    {
+      "id": "every",
+      "symbol": "UpperTheory.FinalTheorems.everyCharacter",
+      "title": "Unconditional EveryCharacter theorem",
+      "statement": "Establish EveryCharacter using the Galois/automorphic input.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "allchi",
+      "symbol": "allChi",
+      "title": "Exports EveryCharacter",
+      "statement": "Restates the upstream EveryCharacter proposition under the name allChi.",
+      "source": {
+        "path": "src/Supplements/Kernels/MainTheorems.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "rh_of_every",
+      "symbol": "Formalism.VW.rh_of_every",
+      "title": "Functional-equation bridge",
+      "statement": "Derives the Riemann Hypothesis from zero-freeness for every Dirichlet character.",
+      "source": {
+        "path": "src/Formalism/GammaFactorNonvanishing/CritLine.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Formalism/GammaFactorNonvanishing/CritLine.lean"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "Nonvanishing of Dirichlet L-functions to the right of 1/2 (with exception)."
+        }
+      ]
+    },
+    {
+      "id": "rh_of_all",
+      "symbol": "rhOfAll",
+      "title": "RH from allChi",
+      "statement": "Specializes every-character nonvanishing to the Riemann Hypothesis.",
+      "source": {
+        "path": "src/Supplements/Kernels/MainTheorems.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "headline",
+      "symbol": "riemannHypothesis",
+      "title": "Headline RH theorem",
+      "statement": "The RiemannHypothesis proposition from Mathlib is proved via rhOfAll.",
+      "source": {
+        "path": "src/Main.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Main.lean"
+      },
+      "assumptions": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "r1",
+      "from": "row",
+      "to": "every",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The Galois/automorphic theorem supplies Row0b, which is passed into everyCharacter_of_row.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r2",
+      "from": "row",
+      "to": "vwin",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "Row0b serves as the input for the VWin construction.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r3",
+      "from": "literature",
+      "to": "bridge",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The literature/theta bridge is applied with a constructed bundle of literature premises and VWin.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r4",
+      "from": "vwin",
+      "to": "bridge",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The VWin result is supplied as the second argument of the literature/theta bridge.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r5",
+      "from": "bridge",
+      "to": "every",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The unconditional EveryCharacter theorem applies everyCharacter_of_row to the Galois result.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r6",
+      "from": "every",
+      "to": "allchi",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Supplements/Kernels/MainTheorems.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The result is re-exported as allChi.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r7",
+      "from": "allchi",
+      "to": "rh_of_all",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Supplements/Kernels/MainTheorems.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The nonvanishing theorem is supplied to the functional-equation bridge.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r8",
+      "from": "rh_of_every",
+      "to": "rh_of_all",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Supplements/Kernels/MainTheorems.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Supplements/Kernels/MainTheorems.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The functional-equation theorem is applied.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "r9",
+      "from": "rh_of_all",
+      "to": "headline",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Main.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Main.lean"
+        }
+      },
+      "semantic": {
+        "role": "Sourced theorem composition",
+        "explanation": "The headline theorem uses rhOfAll directly.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    }
+  ]
+}
