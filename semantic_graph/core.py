@@ -80,6 +80,24 @@ def validate(doc):
                 errors.append(f"{label}.{key} must be nonempty text")
         if not _plain_source(n.get("source"), project):
             errors.append(label + ".source needs path and pinned blob URL")
+        proposal = n.get("proposal_record")
+        if proposal is not None:
+            if not isinstance(proposal, dict) or proposal.get("id_type") != "proposal_item" or proposal.get("id_is_a_theorem_id") is not False:
+                errors.append(label + ".proposal_record must explicitly be a proposal_item, NOT theorem_id")
+            elif any(not isinstance(proposal.get(k), str) or not proposal[k].strip()
+                     for k in ("proposal_id", "proposal_item_id")) or "theorem_id" in proposal:
+                errors.append(label + ".proposal_record missing IDs or conflates theorem_id")
+        detail = n.get("theorem_record")
+        if detail is not None:
+            if not isinstance(detail, dict) or detail.get("provider") != "prove2me":
+                errors.append(label + ".theorem_record provider invalid")
+            elif not all(isinstance(detail.get(k), str) and detail[k].strip()
+                         for k in ("theorem_id", "theorem_name", "formal_statement", "detail_snapshot_sha256", "endpoint")):
+                errors.append(label + ".theorem_record needs theorem_id, name, statement, digest and endpoint")
+            elif detail["theorem_name"] != n.get("symbol") or not HEX64.fullmatch(detail["detail_snapshot_sha256"]):
+                errors.append(label + ".theorem_record name or digest mismatch")
+            elif detail["endpoint"] != "https://prove2.me/api/v1/theorems/" + detail["theorem_id"]:
+                errors.append(label + ".theorem_record must use exact Prove2me theorem endpoint")
         assumptions = n.get("assumptions")
         if not isinstance(assumptions, list):
             errors.append(label + ".assumptions must be array (can be empty)")
@@ -87,6 +105,9 @@ def validate(doc):
             for a in assumptions:
                 if not isinstance(a, dict) or not all(isinstance(a.get(k), str) and a[k].strip() for k in ("name", "meaning")):
                     errors.append(label + ".assumptions entries need name and meaning")
+    theorem_ids = [n.get("theorem_record", {}).get("theorem_id") for n in nodes if isinstance(n, dict) and isinstance(n.get("theorem_record"), dict)]
+    if len(set(theorem_ids)) != len(theorem_ids):
+        errors.append("duplicate authoritative theorem IDs attached to different nodes")
     edgeids = set()
     for idx, e in enumerate(edges):
         label = f"edges[{idx}]"
@@ -209,6 +230,17 @@ def render_markdown(doc, target=None):
         lines.extend([f'## {n["title"]}', "",f'**Formal symbol:** `{n["symbol"]}`',
                       f'**Statement (human read-back):** {n["statement"]}',
                       f'**Source:** [Pinned definition]({n["source"]["url"]})', ""])
+        proposal = n.get("proposal_record")
+        if proposal:
+            lines.append(f'**Prove2me proposal-item ID (not theorem ID):** \`{proposal["proposal_item_id"]}\`')
+            if proposal.get("repository_reported_submission_status"):
+                lines.append(f'**Locally reported status (not live verification):** {proposal["repository_reported_submission_status"]}')
+            lines.append("")
+        detail = n.get("theorem_record")
+        if detail:
+            lines.append(f'**Prove2me theorem ID (from cached API response):** \`{detail["theorem_id"]}\`')
+            lines.append(f'**Reported platform status (snapshot only):** {detail.get("status_as_reported_by_api")}')
+            lines.append("")
         for a in n["assumptions"]:
             lines.append(f'- Assumption **{a["name"]}**: {a["meaning"]}')
         if n["assumptions"]:
