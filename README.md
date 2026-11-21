@@ -1,10 +1,21 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.3 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Status: early research prototype, v0.4 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
 
 A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
 
 This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+
+## Read-only Prove2me integration (v0.4)
+
+The engine now supports an evidence-preserving progression from **local proposal-item IDs → actual platform theorem IDs → platform-recorded sketch dependencies**, without conflating them with Lean kernel-traced dependencies.
+
+- [Integration guide](docs/PROVE2ME-INTEGRATION.md) explains the exact API endpoints, ID types, security controls and commands.
+- [\`semantic_graph/prove2me.py\`](semantic_graph/prove2me.py) implements locally pinned proposal mapping, exact theorem-name lookup, cached theorem-detail binding, and decomposition import.
+- [Bitcoin supply, with actual proposal-item IDs](examples/bitcoin_supply_proposal_linked.json) records three GitHub-sourced identifiers and repository-reported acceptance statuses. **They are not theorem IDs.**
+- [Adapter regression tests](tests/test_prove2me_adapter.py) run without network calls using synthetic API responses.
+
+All live Prove2me calls are **optional, authenticated GET-only**, with redirects disabled and credentials supplied only through a local environment variable. We have **not** connected a live Prove2me account or fetched its theorem records during this work. Platform sketches and natural-language annotations are not kernel certificates.
 
 ## Reusable semantic proof graph prototype (v0.3)
 
@@ -24,6 +35,7 @@ Run locally from this repository (Python 3.10+; standard library only):
 ```sh
 python3 -m semantic_graph.cli validate examples/bitcoin_supply.json
 python3 -m semantic_graph.cli validate examples/rh_critical_path.json
+python3 -m semantic_graph.cli validate examples/bitcoin_supply_proposal_linked.json
 python3 -m semantic_graph.cli mermaid examples/rh_critical_path.json > rh.mmd
 python3 -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > bitcoin-supply.md
 python3 -m unittest discover -s tests -v
