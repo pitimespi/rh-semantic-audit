@@ -1,0 +1,217 @@
+{
+  "schema_version": "semantic-proof-graph/v1",
+  "project": {
+    "id": "prove2me-bitcoin-supply",
+    "title": "Bitcoin supply theorem (Prove2me) — semantic graph prototype",
+    "repository": "https://github.com/pitimespi/prove2me",
+    "revision": "64f338540bb1d4264d4f101d5dd656e290fa0afb",
+    "provenance_note": "Proposal-item IDs and local reported statuses come from pinned GitHub missions/submissions/supply_{proposal,submissions}.json. These are NOT platform theorem IDs or current API observations."
+  },
+  "nodes": [
+    {
+      "id": "subsidy_cap",
+      "symbol": "BitcoinSubsidy.issuance_bound",
+      "title": "Issuance cap",
+      "statement": "The subsidy schedule's issuedBelow(n) is less than MAX_MONEY for every natural height n.",
+      "source": {
+        "path": "Theorems/Thm_BitcoinSubsidy_issuance_bound.lean",
+        "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Theorems/Thm_BitcoinSubsidy_issuance_bound.lean"
+      },
+      "assumptions": [
+        {
+          "name": "n",
+          "meaning": "Arbitrary natural number of blocks or subsidy periods, in the formal statement."
+        }
+      ]
+    },
+    {
+      "id": "block_supply",
+      "symbol": "BitcoinSupply.block_supply",
+      "title": "Per-block UTXO supply update",
+      "statement": "For a reachable state S, an accepted next block increases UTXO total by at most the core block subsidy.",
+      "source": {
+        "path": "Theorems/Thm_BitcoinSupply_block_supply.lean",
+        "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Theorems/Thm_BitcoinSupply_block_supply.lean"
+      },
+      "assumptions": [
+        {
+          "name": "hR",
+          "meaning": "State S is reachable under the formal model."
+        },
+        {
+          "name": "hv",
+          "meaning": "The block validates and results in state S' plus undo information."
+        }
+      ],
+      "proposal_record": {
+        "provider": "prove2me",
+        "id_type": "proposal_item",
+        "proposal_id": "0a0e504f-b793-4090-970f-9063321405ab",
+        "proposal_item_id": "8575bdcf-1596-4f22-bfaf-0c725ac7eaf4",
+        "id_is_a_theorem_id": false,
+        "repository_reported_submission_status": "ACCEPTED"
+      }
+    },
+    {
+      "id": "supply_bound",
+      "symbol": "BitcoinSupply.supply_bound",
+      "title": "Reachable-state supply bound",
+      "statement": "For every reachable chain state, the UTXO total plus genesis subsidy is at most the issued subsidy at its next height.",
+      "source": {
+        "path": "Theorems/Thm_BitcoinSupply_supply_bound.lean",
+        "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Theorems/Thm_BitcoinSupply_supply_bound.lean"
+      },
+      "assumptions": [
+        {
+          "name": "hR",
+          "meaning": "State S is reachable in the model."
+        }
+      ],
+      "proposal_record": {
+        "provider": "prove2me",
+        "id_type": "proposal_item",
+        "proposal_id": "0a0e504f-b793-4090-970f-9063321405ab",
+        "proposal_item_id": "faa28708-d43f-446f-b6fc-16789c6befd2",
+        "id_is_a_theorem_id": false,
+        "repository_reported_submission_status": "ACCEPTED"
+      }
+    },
+    {
+      "id": "supply_cap",
+      "symbol": "BitcoinSupply.supply_lt_maxMoney",
+      "title": "UTXO maximum supply",
+      "statement": "For every reachable state, the UTXO total is strictly below MAX_MONEY.",
+      "source": {
+        "path": "Theorems/Thm_BitcoinSupply_supply_lt_maxMoney.lean",
+        "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Theorems/Thm_BitcoinSupply_supply_lt_maxMoney.lean"
+      },
+      "assumptions": [
+        {
+          "name": "hR",
+          "meaning": "State S is reachable in the model."
+        }
+      ],
+      "proposal_record": {
+        "provider": "prove2me",
+        "id_type": "proposal_item",
+        "proposal_id": "0a0e504f-b793-4090-970f-9063321405ab",
+        "proposal_item_id": "2d6e1f7f-9cfe-44f0-b1ea-6dc81b81a082",
+        "id_is_a_theorem_id": false,
+        "repository_reported_submission_status": "ACCEPTED"
+      }
+    },
+    {
+      "id": "reachable",
+      "symbol": "BitcoinBlockV2.reachable_wellFormed",
+      "title": "Reachability implies well-formedness",
+      "statement": "Every state reachable in the formal chain model satisfies its WellFormed predicate.",
+      "source": {
+        "path": "Theorems/Thm_BitcoinBlockV2_reachable_wellFormed.lean",
+        "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Theorems/Thm_BitcoinBlockV2_reachable_wellFormed.lean"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "The chain state S is reachable."
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "b1",
+      "from": "subsidy_cap",
+      "to": "supply_bound",
+      "kind": "import_candidate",
+      "evidence": {
+        "method": "import_statement",
+        "source": {
+          "path": "Solutions/Sol_BitcoinSupply_supply_bound.lean",
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean"
+        }
+      },
+      "semantic": {
+        "role": "Candidate mathematical prerequisite",
+        "explanation": "Subsidy issuance cap is a candidate input for the reachable-state supply argument; full proof-term use remains unverified.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "b2",
+      "from": "block_supply",
+      "to": "supply_bound",
+      "kind": "import_candidate",
+      "evidence": {
+        "method": "import_statement",
+        "source": {
+          "path": "Solutions/Sol_BitcoinSupply_supply_bound.lean",
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean"
+        }
+      },
+      "semantic": {
+        "role": "Candidate mathematical prerequisite",
+        "explanation": "The local supply bound is a candidate inductive step in the global reachable-state argument.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "b3",
+      "from": "reachable",
+      "to": "supply_bound",
+      "kind": "import_candidate",
+      "evidence": {
+        "method": "import_statement",
+        "source": {
+          "path": "Solutions/Sol_BitcoinSupply_supply_bound.lean",
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_bound.lean"
+        }
+      },
+      "semantic": {
+        "role": "Candidate mathematical prerequisite",
+        "explanation": "Reachability-related structural conditions are candidates for the supply induction.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "b4",
+      "from": "subsidy_cap",
+      "to": "supply_cap",
+      "kind": "import_candidate",
+      "evidence": {
+        "method": "import_statement",
+        "source": {
+          "path": "Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean",
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean"
+        }
+      },
+      "semantic": {
+        "role": "Candidate mathematical prerequisite",
+        "explanation": "The global subsidy cap is a candidate input for bounding ledger value.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "b5",
+      "from": "supply_bound",
+      "to": "supply_cap",
+      "kind": "import_candidate",
+      "evidence": {
+        "method": "import_statement",
+        "source": {
+          "path": "Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean",
+          "url": "https://github.com/pitimespi/prove2me/blob/64f338540bb1d4264d4f101d5dd656e290fa0afb/Solutions/Sol_BitcoinSupply_supply_lt_maxMoney.lean"
+        }
+      },
+      "semantic": {
+        "role": "Candidate mathematical prerequisite",
+        "explanation": "The reachable-chain supply inequality is a candidate bound for the final MAX_MONEY result.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    }
+  ]
+}
