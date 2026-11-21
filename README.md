@@ -1,10 +1,18 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.6 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Status: early research prototype, v0.7 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
 
 A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
 
 This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+
+## Direct Prove2me proof-explanation contribution (v0.7)
+
+A [preview-first, creator-owned submission publisher](semantic_graph/publish.py) can now prepare and, on explicit confirmation, PATCH the `explanation` on **your own accepted Prove2me submission** using the official API. This is the narrowest available direct platform contribution: no new theorem, proof replacement, or website/backend installation.
+
+The first [candidate contribution](contributions/bitcoin_supply_lt_maxMoney_explanation.md) is a source-linked explanation of `BitcoinSupply.supply_lt_maxMoney`. See the [step-by-step direct contribution guide](docs/DIRECT-PROVE2ME-CONTRIBUTION.md) for local preview, ownership checks, confirmation, and credential handling.
+
+**No Prove2me submission has been modified by ChatGPT.** The connection is unavailable in this chat's execution environment. The workflow is intended to run locally after obtaining a fresh credential, and requires both `--apply` and an exact submission ID before making a write. Do not paste API keys into chat or commit them.
 
 ## API-key authentication for read-only Prove2me lookup (v0.6)
 
