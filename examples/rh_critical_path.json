@@ -4,7 +4,8 @@
     "id": "alpoge-rh",
     "title": "Alpöge RH — selected semantic theorem path (not a complete dependency graph)",
     "repository": "https://github.com/Deicyde/riemann-hypothesis",
-    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670"
+    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670",
+    "review_focus": "RH only; Bitcoin fixtures in this repository are historical regression artifacts and not an active audit target."
   },
   "nodes": [
     {
@@ -38,19 +39,27 @@
       "id": "literature",
       "symbol": "UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin",
       "title": "Literature/theta-to-nonvanishing bridge",
-      "statement": "Given OpenLiteratureStatements and VWin, conclude EveryCharacter.",
+      "statement": "Conditional theorem: from three explicitly packaged propositions (two fields of type UpperTheory.One.M.Row and one of type UpperTheory.Zero.LLC.RecTExists), together with a VWin input, produce UpperTheory.EveryCharacter. This is a source-level interpretation, not independent proof verification.",
       "source": {
         "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean",
         "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean"
       },
       "assumptions": [
         {
-          "name": "O",
-          "meaning": "An explicit bundle of statements represented by OpenLiteratureStatements."
+          "name": "O.caraianiLocalGlobalDual",
+          "meaning": "First field of the explicit OpenLiteratureStatements package; its Lean proposition type is UpperTheory.One.M.Row."
+        },
+        {
+          "name": "O.localLanglandsExists",
+          "meaning": "Second field; its Lean proposition type is UpperTheory.Zero.LLC.RecTExists."
+        },
+        {
+          "name": "O.galoisRepOfPolarizedPairLit",
+          "meaning": "Third field; its Lean proposition type is also UpperTheory.One.M.Row (same written proposition type as the first field)."
         },
         {
           "name": "hV",
-          "meaning": "An analytic window witness."
+          "meaning": "A value of UpperTheory.Top.VWin; its mathematical definition is not yet independently read back."
         }
       ]
     },
@@ -58,7 +67,7 @@
       "id": "bridge",
       "symbol": "UpperTheory.FinalTheorems.everyCharacter_of_row",
       "title": "Row-to-every-character bridge",
-      "statement": "Given Row0b data, construct a proof of the zero-free statement for Dirichlet characters.",
+      "statement": "Constructs OpenLiteratureStatements from the three terms h, UpperTheory.Zero.LLC.recTExists, h; obtains VWin by vwin_of_row h, then invokes the conditional literature/theta theorem.",
       "source": {
         "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean",
         "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean"
@@ -66,7 +75,7 @@
       "assumptions": [
         {
           "name": "h",
-          "meaning": "A Row0b witness."
+          "meaning": "A witness of UpperTheory.GalStar.Row0b (fun h rc => UpperTheory.Zero.LLC.IsRecT h rc); the compatibility with both Row fields needs elaborated checking."
         }
       ]
     },
@@ -184,7 +193,7 @@
       },
       "semantic": {
         "role": "Sourced theorem composition",
-        "explanation": "The literature/theta bridge is applied with a constructed bundle of literature premises and VWin.",
+        "explanation": "The conditional literature theorem is supplied a three-field OpenLiteratureStatements value ⟨h, recTExists, h⟩ and a VWin constructed from h; the two Row proposition fields have the same written type. See AUDIT-003 for exact fields and unresolved elaboration questions.",
         "review_status": "draft",
         "reviewers": []
       }
