@@ -24,6 +24,45 @@ def check_pin(graph, checkout):
     return checkout
 
 
+def check_references(graph, checkout):
+    """Check cited line contains the referenced symbol (SOURCE-TEXT only).
+
+    It does not parse Lean syntax, unfold notation, or establish an elaborated
+    proof dependency. An explicit #L source location is required per checked edge.
+    """
+    checkout = check_pin(graph, checkout)
+    by_id = {n["id"]: n for n in graph["nodes"]}
+    result = []
+    for edge in graph["edges"]:
+        if edge["kind"] != "source_reference":
+            continue
+        ref = edge["evidence"]["source"]
+        path = (checkout / ref["path"]).resolve()
+        if checkout not in path.parents:
+            raise ValueError("reference source escapes checkout")
+        pos = ref["url"].rpartition("#L")
+        if not pos[1] or not pos[2].isdigit():
+            result.append({"edge": edge["id"], "status": "missing_explicit_line"})
+            continue
+        line_no = int(pos[2])
+        symbol = by_id[edge["from"]]["symbol"]
+        if not path.is_file():
+            result.append({"edge": edge["id"], "status": "missing_source_file"})
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        if not 1 <= line_no <= len(lines):
+            result.append({"edge": edge["id"], "status": "line_out_of_range"})
+            continue
+        line = lines[line_no - 1]
+        if not line.strip().startswith(("import ", "--", "/-")) and symbol in line:
+            status = "symbol_present_at_pinned_line"
+        else:
+            status = "no_symbol_at_pinned_line"
+        result.append({"edge": edge["id"], "status": status, "symbol": symbol,
+                       "source": ref["path"], "line": line_no})
+    return result
+
+
 def check_imports(graph, checkout):
     """Confirm only that a theorem module was imported; NOT proof-term use."""
     checkout = check_pin(graph, checkout)
@@ -59,12 +98,12 @@ def write_json(path, obj):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
-    for cmd in ("validate", "mermaid", "report", "check-imports", "link-proposal", "bind-theorems", "merge-decompositions"):
+    for cmd in ("validate", "mermaid", "report", "check-imports", "check-references", "link-proposal", "bind-theorems", "merge-decompositions"):
         s = sub.add_parser(cmd)
         s.add_argument("graph", type=Path)
         if cmd == "report":
             s.add_argument("--target", default=None, help="Restrict to ancestors of this node")
-        if cmd == "check-imports":
+        if cmd in ("check-imports", "check-references"):
             s.add_argument("--checkout", required=True, type=Path)
         if cmd == "link-proposal":
             s.add_argument("--checkout", required=True, type=Path, help="Pinned Git checkout of the local proposal records")
@@ -115,6 +154,11 @@ def main(argv=None):
             result = check_imports(graph, args.checkout)
             print(json.dumps(result, indent=2))
             if not all(x["import_present"] for x in result):
+                return 1
+        elif args.command == "check-references":
+            result = check_references(graph, args.checkout)
+            print(json.dumps(result, indent=2))
+            if not result or any(x["status"] != "symbol_present_at_pinned_line" for x in result):
                 return 1
         elif args.command == "link-proposal":
             checkout = check_pin(graph, args.checkout)
