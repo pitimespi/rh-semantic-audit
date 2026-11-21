@@ -9,6 +9,7 @@ from pathlib import Path
 from .core import import_candidates, load, render_markdown, render_mermaid, validate
 from .prove2me import (
     add_decompositions, bind_theorem_details, fetch_readonly, link_proposal, lookup_theorem_exact,
+    access_token_from_environment,
 )
 
 
@@ -129,13 +130,13 @@ def main(argv=None):
         if args.command == "lookup-prove2me":
             if args.out.exists():
                 raise ValueError(f"Refusing to overwrite existing output: {args.out}")
-            result = lookup_theorem_exact(args.theorem_name, os.environ.get("PROVE2ME_ACCESS_TOKEN", ""))
+            result = lookup_theorem_exact(args.theorem_name, access_token_from_environment())
             write_json(args.out, result)
             return 0
         if args.command == "fetch-prove2me":
             if args.out.exists():
                 raise ValueError(f"Refusing to overwrite existing output: {args.out}")
-            result = fetch_readonly(args.theorem_id, args.kind, os.environ.get("PROVE2ME_ACCESS_TOKEN", ""))
+            result = fetch_readonly(args.theorem_id, args.kind, access_token_from_environment())
             write_json(args.out, result)
             return 0
 
