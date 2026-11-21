@@ -1,5 +1,7 @@
 # AUDIT-004 — The analytic passage from theta inputs to Dirichlet L-function nonvanishing
 
+**UPDATE (subsequent audit):** [AUDIT-005](AUDIT-005-EXACT-THETA-BRIDGE.md) located the actual central theorem and showed that it calls a **different** definite-side `HypsAlt` bridge. The `everyE₂` graph here is a useful comparative analytic route, **not an established direct dependency of the headline proof**. The missing source-level connection identified in this earlier report has now been resolved **as a different route**, although mathematical correctness and elaborated kernel dependencies remain unverified.
+
 **Baseline:** third-party RH mirror commit `e50d09817ad81469f737e8f637561e6ccf86c670`.  
 **Status:** source-level theorem-type and proof-composition review; **not** independent Lean elaboration, kernel replay, or mathematical validation. All semantic interpretations are provisional.
 
