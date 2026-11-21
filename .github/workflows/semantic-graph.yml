@@ -6,12 +6,14 @@ on:
       - "semantic_graph/**"
       - "examples/**"
       - "tests/**"
+      - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   pull_request:
     paths:
       - "semantic_graph/**"
       - "examples/**"
       - "tests/**"
+      - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   workflow_dispatch:
 
@@ -35,6 +37,8 @@ jobs:
           python -m semantic_graph.cli validate examples/bitcoin_supply_proposal_linked.json
           python -m semantic_graph.cli mermaid examples/rh_critical_path.json > /tmp/rh.mmd
           python -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > /tmp/bitcoin-report.md
+      - name: Check interactive viewer JavaScript syntax
+        run: node --check viewer/viewer.js
       - name: Check pinned Bitcoin source imports and theorem references
         run: |
           git clone --quiet https://github.com/pitimespi/prove2me.git "$RUNNER_TEMP/prove2me"
