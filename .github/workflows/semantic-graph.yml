@@ -7,9 +7,12 @@ on:
       - "examples/rh_critical_path.json"
       - "examples/rh_analytic_bridge.json"
       - "examples/rh_actual_bridge.json"
+      - "examples/rh_witness_assembly.json"
+      - "examples/rh_witness_fields.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
       - "tools/rh_analytic_check.py"
+      - "tools/rh_witness_fields.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   pull_request:
@@ -18,9 +21,12 @@ on:
       - "examples/rh_critical_path.json"
       - "examples/rh_analytic_bridge.json"
       - "examples/rh_actual_bridge.json"
+      - "examples/rh_witness_assembly.json"
+      - "examples/rh_witness_fields.json"
       - "tests/**"
       - "tools/rh_interface_check.py"
       - "tools/rh_analytic_check.py"
+      - "tools/rh_witness_fields.py"
       - "viewer/**"
       - ".github/workflows/semantic-graph.yml"
   workflow_dispatch:
@@ -43,6 +49,8 @@ jobs:
           python -m semantic_graph.cli validate examples/rh_critical_path.json
           python -m semantic_graph.cli validate examples/rh_analytic_bridge.json
           python -m semantic_graph.cli validate examples/rh_actual_bridge.json
+          python -m semantic_graph.cli validate examples/rh_witness_assembly.json
+          python -m semantic_graph.cli report examples/rh_witness_assembly.json --target nonempty > /tmp/rh-witness-report.md
           python -m semantic_graph.cli report examples/rh_actual_bridge.json --target outer > /tmp/actual-rh-report.md
           python -m semantic_graph.cli report examples/rh_analytic_bridge.json --target everyE2 > /tmp/analytic-report.md
           python -m semantic_graph.cli mermaid examples/rh_critical_path.json > /tmp/rh.mmd
@@ -54,3 +62,5 @@ jobs:
           python3 tools/rh_interface_check.py --fetch-pinned
           python3 -m tools.rh_analytic_check --fetch-pinned
           python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_actual_bridge.json
+          python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_witness_assembly.json
+          python3 -m tools.rh_witness_fields --fetch-pinned --ledger examples/rh_witness_fields.json
