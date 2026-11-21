@@ -15,6 +15,7 @@ import json
 import os
 import re
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from uuid import UUID
@@ -203,26 +204,69 @@ def add_decompositions(graph, parent_node_id, payload):
     return out, {"added": added, "unresolved": unresolved, "snapshot_sha256": digest}
 
 
+class _NeverRedirect(urllib.request.HTTPRedirectHandler):
+    """Never forward authentication headers to a redirect target."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def _get_json(url, token):
+    if not url.startswith(BASE + "/"):
+        raise ValueError("Prove2me API URL must stay on the pinned HTTPS origin")
+    if not isinstance(token, str) or not token:
+        raise ValueError("Set PROVE2ME_ACCESS_TOKEN for read-only API access")
+    req = urllib.request.Request(url, headers={
+        "Authorization": "Bearer " + token,
+        "Accept": "application/json",
+    }, method="GET")
+    opener = urllib.request.build_opener(_NeverRedirect())
+    try:
+        with opener.open(req, timeout=30) as response:
+            if response.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
+                raise ValueError("API response is not JSON")
+            raw = response.read(8_000_001)
+            if len(raw) > 8_000_000:
+                raise ValueError("Prove2me response exceeds size limit")
+            return json.loads(raw)
+    except urllib.error.HTTPError as ex:
+        raise RuntimeError(f"Prove2me returned HTTP {ex.code} (redirects are disabled)") from None
+
+
 def fetch_readonly(theorem_id, kind, token):
-    """Perform a single authenticated GET; never log or persist the access token."""
+    """Fetch exactly one theorem or its decomposition; HTTP GET only."""
     if not valid_uuid(theorem_id):
         raise ValueError("theorem_id must be a UUID")
     if kind not in ("theorem", "decompositions"):
         raise ValueError("unsupported read endpoint")
-    if not isinstance(token, str) or not token:
-        raise ValueError("Set PROVE2ME_ACCESS_TOKEN for read-only API access")
     path = f"/theorems/{theorem_id}"
     if kind == "decompositions":
         path += "/decompositions"
-    req = urllib.request.Request(BASE + path, headers={
-        "Authorization": "Bearer " + token,
-        "Accept": "application/json",
-    }, method="GET")
-    try:
-        with urllib.request.urlopen(req, timeout=30) as response:
-            if response.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
-                raise ValueError("API response is not JSON")
-            result = json.load(response)
-    except urllib.error.HTTPError as ex:
-        raise RuntimeError(f"Prove2me returned HTTP {ex.code} ({kind})") from None
-    return result
+    return _get_json(BASE + path, token)
+
+
+def lookup_theorem_exact(theorem_name, token):
+    """Search by exact Lean name, then fetch full theorem details.
+
+    The search itself can match multiple names. Only an unambiguous exact
+    match is accepted; no fuzzy correspondence is ever used as evidence.
+    """
+    if not isinstance(theorem_name, str) or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]*", theorem_name):
+        raise ValueError("theorem_name must be a Lean-style qualified identifier")
+    if len(theorem_name) > 160:
+        raise ValueError("theorem_name is too long")
+    url = BASE + "/theorems?" + urllib.parse.urlencode({
+        "q": theorem_name, "view": "compact",
+    })
+    response = _get_json(url, token)
+    candidates = response.get("theorems")
+    if not isinstance(candidates, list):
+        raise ValueError("theorem search result lacks a theorem array")
+    matches = [x for x in candidates if isinstance(x, dict) and x.get("theorem_name") == theorem_name]
+    if len(matches) != 1 or not valid_uuid(matches[0].get("theorem_id")):
+        raise ValueError(f"Need exactly one real theorem ID for {theorem_name}, found {len(matches)}")
+    detail = fetch_readonly(matches[0]["theorem_id"], "theorem", token)
+    if not isinstance(detail, dict) or detail.get("theorem_name") != theorem_name:
+        raise ValueError("theorem detail disagrees with search name")
+    if detail.get("theorem_id") != matches[0]["theorem_id"]:
+        raise ValueError("theorem detail ID disagrees with search")
+    return detail
