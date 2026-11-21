@@ -9,7 +9,7 @@ from unittest import mock
 from semantic_graph.core import load, render_markdown, validate
 from semantic_graph.prove2me import (
     add_decompositions, bind_theorem_details, fetch_readonly, link_proposal,
-    snapshot_hash, valid_uuid,
+    lookup_theorem_exact, snapshot_hash, valid_uuid,
 )
 
 
@@ -151,8 +151,13 @@ class Prove2meAdapterTests(unittest.TestCase):
             self.assertEqual(request.get_header("Authorization"), "Bearer ephemeral-token")
             return FakeResponse()
 
-        with mock.patch("semantic_graph.prove2me.urllib.request.urlopen", fake_urlopen):
+        class FakeOpener:
+            def open(self, request, timeout=None):
+                return fake_urlopen(request, timeout)
+
+        with mock.patch("semantic_graph.prove2me.urllib.request.build_opener", return_value=FakeOpener()) as build:
             response = fetch_readonly(TID_SUPPLY, "theorem", "ephemeral-token")
+            self.assertEqual(build.call_args.args[0].__class__.__name__, "_NeverRedirect")
         self.assertEqual(response["theorem_id"], TID_SUPPLY)
 
     def test_api_request_rejects_non_uuid(self):
@@ -160,6 +165,34 @@ class Prove2meAdapterTests(unittest.TestCase):
             fetch_readonly("../../secrets", "theorem", "token")
         with self.assertRaises(ValueError):
             fetch_readonly(TID_SUPPLY, "unknown", "token")
+
+
+    def test_lookup_exact_name_rejects_ambiguous_matches(self):
+        name = "BitcoinSupply.supply_bound"
+        search = {"theorems": [
+            {"theorem_id": TID_SUPPLY, "theorem_name": name},
+            {"theorem_id": "00000000-0000-4000-8000-000000000009", "theorem_name": name},
+        ]}
+        with mock.patch("semantic_graph.prove2me._get_json", return_value=search):
+            with self.assertRaisesRegex(ValueError, "exactly one"):
+                lookup_theorem_exact(name, "ephemeral-token")
+
+    def test_lookup_exact_name_full_detail(self):
+        name = "BitcoinSupply.supply_bound"
+        response = {"theorem_id": TID_SUPPLY, "theorem_name": name,
+                    "formal_statement": "theorem BitcoinSupply.supply_bound : True := by sorry"}
+        def fake_get(url, token):
+            self.assertEqual(token, "ephemeral-token")
+            if "?q=" in url:
+                return {"theorems": [response, {"theorem_name": "Other.name"}]}
+            self.assertEqual(url, "https://prove2.me/api/v1/theorems/" + TID_SUPPLY)
+            return response
+        with mock.patch("semantic_graph.prove2me._get_json", side_effect=fake_get):
+            self.assertEqual(lookup_theorem_exact(name, "ephemeral-token"), response)
+
+    def test_no_network_access_without_token(self):
+        with self.assertRaisesRegex(ValueError, "PROVE2ME_ACCESS_TOKEN"):
+            fetch_readonly(TID_SUPPLY, "theorem", "")
 
     def test_digest_stable_for_key_order(self):
         self.assertEqual(snapshot_hash({"b": 2, "a": 1}),
