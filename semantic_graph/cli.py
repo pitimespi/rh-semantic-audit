@@ -8,7 +8,7 @@ from pathlib import Path
 
 from .core import import_candidates, load, render_markdown, render_mermaid, validate
 from .prove2me import (
-    add_decompositions, bind_theorem_details, fetch_readonly, link_proposal,
+    add_decompositions, bind_theorem_details, fetch_readonly, link_proposal, lookup_theorem_exact,
 )
 
 
@@ -82,8 +82,17 @@ def main(argv=None):
     f.add_argument("--theorem-id", required=True)
     f.add_argument("--kind", choices=("theorem", "decompositions"), required=True)
     f.add_argument("--out", required=True, type=Path)
+    l = sub.add_parser("lookup-prove2me", help="Search exact theorem name and fetch details via authenticated GET only")
+    l.add_argument("--theorem-name", required=True, help="Exact Lean theorem symbol (no fuzzy matches)")
+    l.add_argument("--out", required=True, type=Path)
     args = p.parse_args(argv)
     try:
+        if args.command == "lookup-prove2me":
+            if args.out.exists():
+                raise ValueError(f"Refusing to overwrite existing output: {args.out}")
+            result = lookup_theorem_exact(args.theorem_name, os.environ.get("PROVE2ME_ACCESS_TOKEN", ""))
+            write_json(args.out, result)
+            return 0
         if args.command == "fetch-prove2me":
             if args.out.exists():
                 raise ValueError(f"Refusing to overwrite existing output: {args.out}")
