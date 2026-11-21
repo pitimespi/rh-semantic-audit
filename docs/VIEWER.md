@@ -10,11 +10,12 @@ From a clone of this repository:
 python3 -m http.server 8000
 ```
 
-Visit `http://localhost:8000/viewer/` in a browser. The three RH-only views are:
+Visit `http://localhost:8000/viewer/` in a browser. The four RH-only views are:
 
 1. **Actual central RH bridge (recommended):** [`rh_actual_bridge.json`](../examples/rh_actual_bridge.json). Maps the real `every_character_of_theta_integrals_local_matching` theorem, its seven supplied premises, its definite-side `HypsAlt` construction, and the Green/window to nonvanishing step. See [AUDIT-005](../audit/AUDIT-005-EXACT-THETA-BRIDGE.md).
-2. **Headline theorem chain:** [`rh_critical_path.json`](../examples/rh_critical_path.json). Source-linked route from Galois/row witnesses to the final RH statement, now including the actual central theta theorem.
-3. **Earlier analogous bridge (comparison only):** [`rh_analytic_bridge.json`](../examples/rh_analytic_bridge.json). A different theorem, `everyE₂`, with different analytic hypotheses. It is **not** established as a direct dependency of the headline route.
+2. **46-field witness assembly:** [`rh_witness_assembly.json`](../examples/rh_witness_assembly.json). Follows 15 source-confirmed theorem calls through grid thresholds, linked-bundle conditions, and the selected-row constructor. The separate [field ledger](../examples/rh_witness_fields.json) cross-references 26 upstream `AllRowsAlt` field names with all 46 downstream `HypsAlt` assignments. See [AUDIT-006](../audit/AUDIT-006-GLOBAL-WITNESS.md).
+3. **Headline theorem chain:** [`rh_critical_path.json`](../examples/rh_critical_path.json). Source-linked route from Galois/row witnesses to the final RH statement, now including the actual central theta theorem.
+4. **Earlier analogous bridge (comparison only):** [`rh_analytic_bridge.json`](../examples/rh_analytic_bridge.json). A different theorem, `everyE₂`, with different analytic hypotheses. It is **not** established as a direct dependency of the headline route.
 
 The **Open local JSON** option works without a local web server. It uses `FileReader` in the browser; the file is not uploaded. The example-loading buttons usually need `http://localhost` because modern browsers restrict `file://` fetches.
 
@@ -24,7 +25,10 @@ Each node displays a source-pinned statement, currently recorded assumptions and
 
 All edges in the current RH fixtures are **source references**, not independently extracted Lean kernel proof-term dependencies. No mathematical explanation is marked independently reviewed. If two theorem types appear analogous, the interface does not assume they are definitionally or mathematically equivalent.
 
-This viewer uses a bounded SVG DAG layout, not a tool for hundreds of thousands of declarations. It avoids external JavaScript packages, trackers, third-party fonts and credentials. Imported prose is inserted as text rather than HTML. Run `python3 -m semantic_graph.cli validate examples/rh_actual_bridge.json` on new JSON before relying on its structural integrity.
+This viewer uses a bounded SVG DAG layout, not a tool for hundreds of thousands of declarations. It avoids external JavaScript packages, trackers, third-party fonts and credentials. Imported prose is inserted as text rather than HTML. Run `python3 -m semantic_graph.cli validate examples/rh_actual_bridge.json
+python3 -m semantic_graph.cli validate examples/rh_witness_assembly.json
+python3 -m tools.rh_witness_fields --fetch-pinned --ledger examples/rh_witness_fields.json
+python3 -m tools.rh_analytic_check --fetch-pinned --graph examples/rh_witness_assembly.json` on new JSON before relying on its structural integrity.
 
 ## Source reproducibility
 
