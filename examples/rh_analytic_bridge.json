@@ -1,0 +1,347 @@
+{
+  "schema_version": "semantic-proof-graph/v1",
+  "project": {
+    "id": "rh-analytic-bridge",
+    "title": "RH claimed proof — source-grounded analytic nonvanishing subgraph",
+    "repository": "https://github.com/Deicyde/riemann-hypothesis",
+    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670",
+    "scope_note": "Local subgraph only. Link from the central every_character_of_theta_integrals_local_matching theorem has not yet been independently established."
+  },
+  "nodes": [
+    {
+      "id": "hypsE2",
+      "symbol": "UpperTheory.Lit.hypsE₂",
+      "title": "Theta inputs construct global hypotheses",
+      "statement": "From global and functional hypotheses, theta integral equality, local matching, covolume data, local Langlands and a family of auxiliary bounds, conclude Nonempty (Hyps S0.NL DRS).",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean#L41"
+      },
+      "assumptions": [
+        {
+          "name": "P",
+          "meaning": "S0.HypothesesUE"
+        },
+        {
+          "name": "F",
+          "meaning": "GlobalTheory.FunPr.Hypotheses₂"
+        },
+        {
+          "name": "hA",
+          "meaning": "ThetaIntegralsAgree"
+        },
+        {
+          "name": "hM",
+          "meaning": "LocalMatching"
+        },
+        {
+          "name": "hX",
+          "meaning": "CovolX"
+        },
+        {
+          "name": "hL",
+          "meaning": "LocalLanglandsGL"
+        },
+        {
+          "name": "hN",
+          "meaning": "A parameter-indexed local/global bound; supplied downstream using P.nLink."
+        }
+      ]
+    },
+    {
+      "id": "everyE2",
+      "symbol": "UpperTheory.Lit.everyE₂",
+      "title": "Theta and window hypotheses imply character nonvanishing",
+      "statement": "Seven explicit inputs P, F, hA (theta agreement), hM (local matching), hX (covolume), hL (local Langlands), and hV (VWin) imply UpperTheory.EveryCharacter, conditional on those hypotheses.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean#L67"
+      },
+      "assumptions": [
+        {
+          "name": "P",
+          "meaning": "Global spectral/classical hypothesis package S0.HypothesesUE"
+        },
+        {
+          "name": "F",
+          "meaning": "GlobalTheory.FunPr.Hypotheses₂"
+        },
+        {
+          "name": "hA",
+          "meaning": "ThetaIntegralsAgree"
+        },
+        {
+          "name": "hM",
+          "meaning": "LocalMatching"
+        },
+        {
+          "name": "hX",
+          "meaning": "CovolX"
+        },
+        {
+          "name": "hL",
+          "meaning": "LocalLanglandsGL"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin; full definition not yet expanded"
+        }
+      ]
+    },
+    {
+      "id": "zeroFree",
+      "symbol": "UpperTheory.Top.zeroFreeAll_of_topG",
+      "title": "Topological host conditions yield primitive zero-freeness",
+      "statement": "Given 1 < la, TopG, and a host-existence witness for every primitive character, prove Formalism.HC.ZeroFreeAll.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/ZeroFreeAllOfTopG.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/ZeroFreeAllOfTopG.lean#L26"
+      },
+      "assumptions": [
+        {
+          "name": "hla",
+          "meaning": "Real parameter la > 1"
+        },
+        {
+          "name": "h",
+          "meaning": "TopG, a family-class connectedness requirement"
+        },
+        {
+          "name": "hS",
+          "meaning": "For every primitive character ψ, existence of the required host at la"
+        }
+      ]
+    },
+    {
+      "id": "shapeWin",
+      "symbol": "UpperTheory.Top.shapeWin",
+      "title": "Green condition yields shape-window data",
+      "statement": "Given GlobalTheory.GLq.Green, establish a TopShape proposition that can be used to derive TopG from inhabited global hypotheses.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/ShapeWin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/ShapeWin.lean#L27"
+      },
+      "assumptions": [
+        {
+          "name": "hGreen",
+          "meaning": "GlobalTheory.GLq.Green; exact mathematical content not yet expanded"
+        }
+      ]
+    },
+    {
+      "id": "supplyChi",
+      "symbol": "UpperTheory.Top.supplyChi",
+      "title": "Character windows supply hosts",
+      "statement": "For each primitive character ψ, VWinAt ψ 401 implies HostExW (3/2) (GChi ψ).req.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/SupplyChi.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/SupplyChi.lean#L8"
+      },
+      "assumptions": [
+        {
+          "name": "hψ",
+          "meaning": "VWinAt ψ 401: a character-specific window witness; definition not yet expanded"
+        }
+      ]
+    },
+    {
+      "id": "plugWin",
+      "symbol": "UpperTheory.Top.plugWin",
+      "title": "Green, VWin and global hypotheses imply primitive zero-free result",
+      "statement": "Given Green, VWin, and Nonempty global hypotheses, prove Formalism.HC.ZeroFreeAll via shapeWin, supplyChi and zeroFreeAll_of_topG.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L8"
+      },
+      "assumptions": [
+        {
+          "name": "hG",
+          "meaning": "GlobalTheory.GLq.Green"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin"
+        },
+        {
+          "name": "h",
+          "meaning": "Nonempty (Hyps (fun C => Closed C ... LinkN) DRS)"
+        }
+      ]
+    },
+    {
+      "id": "imprimitive",
+      "symbol": "UpperTheory.Top.imprimitive",
+      "title": "Extend primitive zero-freeness to all characters",
+      "statement": "Given ZeroFreeAll, prove L(χ,s) ≠ 0 for Dirichlet characters in Re(s)>1/2 with the trivial-character exception, using primitive reduction and Euler factors.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/Imprimitive.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/Imprimitive.lean#L5"
+      },
+      "assumptions": [
+        {
+          "name": "h",
+          "meaning": "Formalism.HC.ZeroFreeAll for primitive characters"
+        }
+      ]
+    },
+    {
+      "id": "plugAll",
+      "symbol": "UpperTheory.Top.plugAll",
+      "title": "Construct full EveryCharacter from primitive zero-free data",
+      "statement": "Given Green, VWin and inhabited global hypotheses, apply plugWin and imprimitive to obtain UpperTheory.EveryCharacter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L16"
+      },
+      "assumptions": [
+        {
+          "name": "hG",
+          "meaning": "GlobalTheory.GLq.Green"
+        },
+        {
+          "name": "hV",
+          "meaning": "UpperTheory.Top.VWin"
+        },
+        {
+          "name": "h",
+          "meaning": "Nonempty (Hyps (fun C => Closed C ... LinkN) DRS)"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "h1",
+      "from": "hypsE2",
+      "to": "everyE2",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean#L71"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "The auxiliary lemma creates an inhabited global hypothesis package from theta, matching, covolume and local Langlands inputs.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e1",
+      "from": "plugAll",
+      "to": "everyE2",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/EveryCharacterE.lean#L70"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "The final theorem applies the global plugAll composition to Green data, the supplied VWin, and the result of hypsE₂.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "z1",
+      "from": "zeroFree",
+      "to": "plugWin",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L10"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "plugWin applies zeroFreeAll_of_topG at la=3/2 to yield primitive zero-freeness.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "z2",
+      "from": "shapeWin",
+      "to": "plugWin",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L11"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "The shape theorem is passed through shape_of to provide the TopG input.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "z3",
+      "from": "supplyChi",
+      "to": "plugWin",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L11"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "The supplied VWin character witness is passed to supplyChi, producing host existence for each primitive character.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "p1",
+      "from": "plugWin",
+      "to": "plugAll",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L18"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "plugAll obtains the primitive ZeroFreeAll proposition by applying plugWin.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "p2",
+      "from": "imprimitive",
+      "to": "plugAll",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean#L18"
+        }
+      },
+      "semantic": {
+        "role": "Explicit named theorem invocation in pinned Lean source",
+        "explanation": "plugAll uses imprimitive to lift primitive nonvanishing to all Dirichlet characters.",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    }
+  ]
+}
