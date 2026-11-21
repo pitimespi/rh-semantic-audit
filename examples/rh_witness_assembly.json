@@ -1,0 +1,475 @@
+{
+  "schema_version": "semantic-proof-graph/v1",
+  "project": {
+    "id": "rh-witness-assembly",
+    "title": "RH definite-side global hypothesis witness assembly",
+    "repository": "https://github.com/Deicyde/riemann-hypothesis",
+    "revision": "e50d09817ad81469f737e8f637561e6ccf86c670",
+    "scope_note": "Source-level theorem references only. 26 AllRowsAlt fields feed a 46-field HypsAlt witness; mathematical validity, elaboration and kernel dependencies remain unchecked."
+  },
+  "nodes": [
+    {
+      "id": "separate",
+      "symbol": "UpperTheory.Lit.functionalsSeparate_of_howeUnram_of_siegelWeil",
+      "title": "Functional separation",
+      "statement": "Produce FunctionalsSeparate from theta-local and Howe/Siegel-Weil inputs; detailed mathematical adequacy remains unreviewed.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FunctionalsSeparateOfHoweUnramOfSiegelWeil.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FunctionalsSeparateOfHoweUnramOfSiegelWeil.lean#L17"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "testVector",
+      "symbol": "GlobalTheory.T.test_vector_assembly_holds",
+      "title": "Test-vector/row rationality",
+      "statement": "Provide test-vector row data using theta agreement, local matching and functionals separation; used to construct S0.RowRat.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/TestVectorAtDatumOfJoin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/TestVectorAtDatumOfJoin.lean#L39"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "fourier",
+      "symbol": "GlobalTheory.BigTop.Fun.Close.fourier_coefficient_fit_of_join_alt",
+      "title": "Fourier fit",
+      "statement": "Build ConstantFunctionFits from theta/local inputs and other supplied analytic conditions.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/FourierCoefficientFitOfJoin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/FourierCoefficientFitOfJoin.lean#L12"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "grid",
+      "symbol": "GlobalTheory.Mem.LiteralAutomorphy.evaluation_grid_of_join",
+      "title": "Evaluation-grid threshold",
+      "statement": "Return CF1 and evidence EvLgG (GridA CF) for each CF at least CF1.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/EvaluationGridOfJoin.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/EvaluationGridOfJoin.lean#L23"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "rowFun",
+      "symbol": "GlobalTheory.Fc.StageOne.rowFun_at_gridA_alt",
+      "title": "Functional threshold",
+      "statement": "Return CF0 and a parameterized LinkedAt functional condition for every larger grid parameter.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RowFunAtGridA.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/RowFunAtGridA.lean#L32"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "openParam",
+      "symbol": "GlobalTheory.T.open0_of_unitary_group_hypotheses",
+      "title": "Open-parameter hypothesis",
+      "statement": "Produce an OpenParameterStatements premise from unitary-group hypotheses and RecTExists.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/OpenOrbitOfUnramifiedExponents.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/OpenOrbitOfUnramifiedExponents.lean#L75"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "transport",
+      "symbol": "GlobalTheory.Glob.open_and_linked_of_stronger_extension_alt",
+      "title": "Transport open and linked conditions",
+      "statement": "Move a LinkedAt condition and OpenParameterStatements to a stronger extension under an extension comparison.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/OpenAndLinkedOfStrongerExtension.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/OpenAndLinkedOfStrongerExtension.lean#L28"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "l3",
+      "symbol": "GlobalTheory.Glob.CovolRow.linked_bundles_l3_of_open_alt",
+      "title": "Covolume/linked bundles",
+      "statement": "Produce the covolume-related LinkedAt condition from geometry, covolume and open inputs.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkedBundlesL3OfOpen.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/LinkedBundlesL3OfOpen.lean#L31"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "stage",
+      "symbol": "GlobalTheory.Fc.S0.StageU.hypotheses_nonempty_of_unramified_exponents_alt",
+      "title": "Stage-level global witness",
+      "statement": "Combine the row-rationality, grid, LinkedAt norm, functional and covolume inputs into a Nonempty HypsAlt conclusion.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L41"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "large",
+      "symbol": "GlobalTheory.T.large_unramified_exponent_bundles_exist_alt",
+      "title": "Large-unramified-exponent bundle",
+      "statement": "Produces mass, membership and existence data from the given unitary, row and local Langlands premises.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/MemberBundlesLargeUnramifiedExponents.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/MemberBundlesLargeUnramifiedExponents.lean#L69"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "gal",
+      "symbol": "GlobalTheory.T.hyps_e_third_layer_ser_n_of_geometric_galois",
+      "title": "Geometric/Galois third-layer inputs",
+      "statement": "Produces third-layer data including row-related inputs used by the stage-level witness.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ThetaLiftHypothesesOfNonvanishing.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/ThetaLiftHypothesesOfNonvanishing.lean#L51"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "rowBound",
+      "symbol": "UpperTheory.GalC.final_alt_alt",
+      "title": "Galois/row-linked norm condition",
+      "statement": "Direct call at the stage proof supplies the transported row-linked bound. Declaration not yet independently reviewed.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L47"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "allRows",
+      "symbol": "GlobalTheory.Fc.AllAtMemberStage0.allRows_of_open0_alt",
+      "title": "All rows and selection obligations",
+      "statement": "Supplies the selected 26-field AllRowsAlt package required before constructing HypsAlt. Declaration not yet independently reviewed.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L54"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "choose",
+      "symbol": "UpperTheory.Top.classSel",
+      "title": "Select family and coherent row witnesses",
+      "statement": "Takes a conjunction of RowL conditions and chooses a family and selection with witnesses; call site in source is verified, declaration not independently expanded.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L51"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "rowsWitness",
+      "symbol": "GlobalTheory.Fc.nonempty_hyps_of_allRows_alt",
+      "title": "Construct the 46-field HypsAlt",
+      "statement": "Given AllRowsAlt, global mass and related inputs, builds the Type 1 HypsAlt record with all 46 explicit named fields.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L19"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "nonempty",
+      "symbol": "UpperTheory.Lit.nonempty_hyps_definite_side_of_closed_bound",
+      "title": "Theta/local matching to nonempty HypsAlt",
+      "statement": "From seven explicit premises, synchronizes grid thresholds and produces the global HypsAlt witness via the stage theorem.",
+      "source": {
+        "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+        "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L44"
+      },
+      "assumptions": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "e01",
+      "from": "separate",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L48"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Functional separation is constructed from local theta/Howe inputs",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e02",
+      "from": "testVector",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L49"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "The test-vector assembly is used in the RowRat derivation",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e03",
+      "from": "fourier",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L51"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Fourier fitting supplies ConstantFunctionFits",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e04",
+      "from": "grid",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L52"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Evaluation-grid lemma supplies the CF1 threshold",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e05",
+      "from": "rowFun",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L55"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Row functional lemma supplies the CF0 threshold",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e06",
+      "from": "openParam",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L58"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Theorem supplies the initial open-parameter condition",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e07",
+      "from": "transport",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L59"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Open/Linked transport establishes strengthened extension inputs",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e08",
+      "from": "l3",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L65"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Linked-bundle lemma supplies the covolume-related condition",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e09",
+      "from": "stage",
+      "to": "nonempty",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean#L68"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Stage-level theorem yields the final Nonempty HypsAlt witness",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e10",
+      "from": "large",
+      "to": "stage",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L43"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Mass and bundle existence are obtained from large-unramified exponents",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e11",
+      "from": "gal",
+      "to": "stage",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L44"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Third-layer geometric/Galois outputs supply row prerequisites",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e12",
+      "from": "rowBound",
+      "to": "stage",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L47"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Galois row bridge constructs the norm LinkedAt condition",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e13",
+      "from": "allRows",
+      "to": "stage",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L54"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "Selected rows and geometric conditions are packaged into AllRowsAlt",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e14",
+      "from": "rowsWitness",
+      "to": "stage",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/HypothesesNonemptyOfUnramifiedExponents.lean#L57"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "The 26-field AllRowsAlt package is used to construct Nonempty HypsAlt",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    },
+    {
+      "id": "e15",
+      "from": "choose",
+      "to": "rowsWitness",
+      "kind": "source_reference",
+      "evidence": {
+        "method": "textual_reference",
+        "source": {
+          "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean",
+          "url": "https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/NonemptyHypsOfAllRows.lean#L51"
+        }
+      },
+      "semantic": {
+        "role": "Named theorem invocation in pinned source; not kernel-exported dependency",
+        "explanation": "The classSel theorem selects family/row data before the 46-field record literal",
+        "review_status": "draft",
+        "reviewers": []
+      }
+    }
+  ]
+}
