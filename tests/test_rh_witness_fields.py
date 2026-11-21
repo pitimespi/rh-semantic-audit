@@ -9,7 +9,9 @@ from tools.rh_witness_fields import (
     inspect,
     parse_constructor,
     parse_structure,
+    parse_allrows,
     validate_ledger,
+    validate_row_package,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +73,50 @@ class RHWitnessFieldTests(unittest.TestCase):
         counts = validate_ledger(ledger, facts)
         self.assertEqual(sum(counts.values()), EXPECTED_COUNT)
         self.assertEqual(counts["classical_choice"], 1)
+
+    def test_upstream_row_fields_are_only_name_correspondences(self):
+        ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
+        self.assertEqual(len(ledger["row_package"]["fields"]), 26)
+        listed = [x["field"] for x in ledger["row_package"]["fields"]]
+        self.assertEqual(len(set(listed)), 26)
+        self.assertTrue(set(listed) <= {x["field"] for x in ledger["fields"]})
+        self.assertTrue(all(x["correspondence_kind"] == "name_only"
+                            for x in ledger["row_package"]["fields"]))
+
+    def test_parse_allrows_from_synthetic_prop(self):
+        source = """namespace GlobalTheory.Fc
+structure AllRowsAlt (P : Prop)
+    (DR : Type) : Prop where
+  hRB : Prop
+  σ : Prop
+end GlobalTheory.Fc
+"""
+        self.assertEqual([name for name, _ in parse_allrows(source)], ["hRB", "σ"])
+
+    def test_row_package_validation_against_ledger_layout(self):
+        ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
+        lines = ["namespace GlobalTheory.Fc",
+                 "structure AllRowsAlt (P : Prop)",
+                 "    (DR : Type) : Prop where"]
+        cursor = 4
+        for entry in ledger["row_package"]["fields"]:
+            target = entry["declaration_line"]
+            while cursor < target:
+                lines.append("")
+                cursor += 1
+            lines.append("  " + entry["field"] + " : Prop")
+            cursor += 1
+        lines.append("end GlobalTheory.Fc")
+        synthetic = "\n".join(lines)
+        count = validate_row_package(
+            ledger, synthetic,
+            [{k: entry[k] for k in ("field", "declaration_line", "constructor_line", "construction_kind")}
+             for entry in ledger["fields"]],
+        )
+        self.assertEqual(count, 26)
+        tampered = synthetic.replace("  hn4 : Prop", "  bogus : Prop", 1)
+        with self.assertRaisesRegex(ValueError, "mismatches pinned"):
+            validate_row_package(ledger, tampered, ledger["fields"])
 
     def test_checker_rejects_wrong_source_position(self):
         ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
