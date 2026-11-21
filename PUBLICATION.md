@@ -1,30 +1,27 @@
-# Publication and engagement policy
+# RH semantic audit — publication and scope policy
+
+**Version 0.8 (2026-11-20)** · Active scope: **Riemann Hypothesis only**.
+
+Repository: https://github.com/pitimespi/rh-semantic-audit
 
 ## Status
 
-The reusable research prototype (v0.6) is published in the owner's standalone repository:
-https://github.com/pitimespi/rh-semantic-audit
+- [x] Publish an RH-only research introduction and roadmap in [README.md](README.md).
+- [x] Preserve pinned provenance for third-party source mirror commit `e50d09817ad81469f737e8f637561e6ccf86c670`.
+- [x] Document the exact three fields of `OpenLiteratureStatements` and their source-level construction in [AUDIT-003](audit/AUDIT-003-OPEN-LITERATURE.md).
+- [x] Enrich the [RH semantic graph](examples/rh_critical_path.json) with those explicit assumptions.
+- [x] Make the [viewer](viewer/index.html) show RH as the sole example choice.
+- [x] Add an RH-only source-text checker that reads selected files by immutable Git commit, without distributing or executing unlicensed Lean source.
+- [x] Confirm GitHub Actions [RH-only workflow](https://github.com/pitimespi/rh-semantic-audit/actions/runs/44850737317) passed 48 unit tests, graph validation, JavaScript syntax, and pinned RH source interface checks.
+- [x] Preserve older unrelated engineering examples as [inactive legacy material](docs/LEGACY.md) rather than deleting them without a specific request.
+- [x] Maintain the hold on outreach: no issues, PRs, public comments, researcher contacts or upstream submissions.
 
-The initial release contained 12 files. Version 0.3 added the `semantic_graph/` engine. Version 0.4 added read-only Prove2me adapter logic and the local proposal-item provenance; version 0.5 added source-line-verified Bitcoin semantic explanations and a local interactive graph viewer. Version 0.6 adds secure local Prove2me API-key exchange for read-only lookups. CI checks Python tests, fixture validation, JavaScript syntax, and pinned Bitcoin source references. The original reports and scanner remain available.
+## Limits and next steps
 
-**No community engagement is authorized.** Do not open issues or pull requests in other repositories, comment on others' research, contact Alpöge or verification maintainers, or post announcements without new explicit authorization.
+The new field inventory and CI check are *source-level results*. They do not demonstrate the mathematical correctness of the published RH claim, expand implied arguments or instances, check for axioms, reconstruct an elaborated dependency graph, or replay the proof in the Lean kernel.
 
-## Release checks
+**Next checks:** expand `UpperTheory.One.M.Row` versus `UpperTheory.GalStar.Row0b`, analyze the `recTExists` theorem's prerequisites, and retrieve a precise elaborated type and independent mathematical read-back of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`.
 
-- [x] Create `pitimespi/rh-semantic-audit`.
-- [x] Publish the initial reports and the new semantic proof graph engine under `main`.
-- [x] Preserve exact source version pins and provide links to related research.
-- [x] Include only original audit text, scanner and synthetic tests; do not redistribute the author's unlicensed Lean source.
-- [x] State limits: source-text inspection is not mathematical proof or independent kernel replay.
-- [x] Verify the repository tree contains the intended files.\n- [x] Verify the semantic graph CI checks completed successfully, including the pinned Bitcoin source checks and the interactive viewer syntax (GitHub Actions run 44848731009).
-- [x] Keep the original `pitimespi/prove2me` repository unchanged.
-- [x] Do not engage upstream maintainers or researchers.
+The Prove2me integration and Bitcoin files are historical scaffolding only. **No Prove2me theorem or explanation has been submitted** as part of this RH audit. The RH source in the mirror has no explicit reuse license reported; no original proof source is redistributed in this project.
 
-## Research next steps (internal)
-
-1. Obtain a platform-supported theorem-ID/dependency export from Prove2me before calling these true kernel dependencies; currently the Bitcoin example records imports as candidates.\n2. Expand `OpenLiteratureStatements` into a field-by-field mathematical read-back.
-3. Extract the exact elaborated type and prerequisites of `every_character_of_theta_integrals_local_matching`.
-4. Produce independent interpretations and flag differences as explicit review questions.
-5. Only with permission, consider proposing individual findings upstream.
-
-The standalone GitHub repository being public does not imply outreach, endorsement, or independent validation of Alpöge's claimed proof.
+A previously exposed Prove2me API key should be revoked and replaced; no credential belongs in GitHub commits or automation.
