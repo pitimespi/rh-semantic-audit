@@ -1,0 +1,23 @@
+flowchart TD
+    row["galoisLocalGlobalStrong_recParameter"]
+    vwin["vwin_of_row"]
+    literature["every_character_of_literature_of_vWin"]
+    bridge["everyCharacter_of_row"]
+    every["UpperTheory.FinalTheorems.everyCharacter"]
+    predicate["UpperTheory.EveryCharacter : Prop"]
+    allchi["allChi"]
+    rh_from_right["Formalism.VW.rh_of_right"]
+    rh_of_every["Formalism.VW.rh_of_every"]
+    rh_of_all["rhOfAll"]
+    headline["riemannHypothesis : RiemannHypothesis"]
+    row --> every
+    literature --> bridge
+    vwin --> bridge
+    bridge --> every
+    every --> allchi
+    allchi --> rh_of_all
+    rh_from_right --> rh_of_every
+    rh_of_every --> rh_of_all
+    rh_of_all --> headline
+    %% Source-level trace, not a Lean-generated complete DAG.
+    %% The predicate is an intermediate statement/type, not an additional proof dependency.
