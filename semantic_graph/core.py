@@ -14,7 +14,7 @@ KINDS = {"source_reference", "import_candidate", "platform_decomposition", "kern
 REVIEWS = {"draft", "independent_review", "disputed"}
 HEX40 = re.compile(r"^[a-f0-9]{40}$")
 HEX64 = re.compile(r"^[a-f0-9]{64}$")
-ID = re.compile(r"^[A-Za-z][A-Za-z0-9_.:-]*$")
+ID = re.compile(r"^[A-Za-z][A-Za-z0-9_.:_-]*$")
 
 
 def load(path):
