@@ -32,5 +32,12 @@ jobs:
         run: |
           python -m semantic_graph.cli validate examples/bitcoin_supply.json
           python -m semantic_graph.cli validate examples/rh_critical_path.json
+          python -m semantic_graph.cli validate examples/bitcoin_supply_proposal_linked.json
           python -m semantic_graph.cli mermaid examples/rh_critical_path.json > /tmp/rh.mmd
           python -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > /tmp/bitcoin-report.md
+      - name: Check pinned Bitcoin source imports and theorem references
+        run: |
+          git clone --quiet https://github.com/pitimespi/prove2me.git "$RUNNER_TEMP/prove2me"
+          git -C "$RUNNER_TEMP/prove2me" checkout --quiet 64f338540bb1d4264d4f101d5dd656e290fa0afb
+          python3 -m semantic_graph.cli check-imports examples/bitcoin_supply_proposal_linked.json --checkout "$RUNNER_TEMP/prove2me"
+          python3 -m semantic_graph.cli check-references examples/bitcoin_supply_proposal_linked.json --checkout "$RUNNER_TEMP/prove2me"
