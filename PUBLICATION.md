@@ -2,10 +2,10 @@
 
 ## Status
 
-The reusable research prototype (v0.3) is published in the owner's standalone repository:
+The reusable research prototype (v0.5) is published in the owner's standalone repository:
 https://github.com/pitimespi/rh-semantic-audit
 
-The initial release contained 12 files. Version 0.3 adds the `semantic_graph/` engine, Bitcoin and RH fixture graphs, the design guide, semantic graph regression tests, and automated GitHub Actions checks. The original reports and scanner remain available.
+The initial release contained 12 files. Version 0.3 added the `semantic_graph/` engine. Version 0.4 added read-only Prove2me adapter logic and the local proposal-item provenance; version 0.5 adds source-line-verified Bitcoin semantic explanations and a local interactive graph viewer. CI checks Python tests, fixture validation, JavaScript syntax, and pinned Bitcoin source references. The original reports and scanner remain available.
 
 **No community engagement is authorized.** Do not open issues or pull requests in other repositories, comment on others' research, contact Alpöge or verification maintainers, or post announcements without new explicit authorization.
 
@@ -16,7 +16,7 @@ The initial release contained 12 files. Version 0.3 adds the `semantic_graph/` e
 - [x] Preserve exact source version pins and provide links to related research.
 - [x] Include only original audit text, scanner and synthetic tests; do not redistribute the author's unlicensed Lean source.
 - [x] State limits: source-text inspection is not mathematical proof or independent kernel replay.
-- [x] Verify the repository tree contains the intended files.\n- [x] Verify the semantic graph CI checks completed successfully (GitHub Actions run 44847167181).
+- [x] Verify the repository tree contains the intended files.\n- [x] Verify the semantic graph CI checks completed successfully, including the pinned Bitcoin source checks and the interactive viewer syntax (GitHub Actions run 44848731009).
 - [x] Keep the original `pitimespi/prove2me` repository unchanged.
 - [x] Do not engage upstream maintainers or researchers.
 
