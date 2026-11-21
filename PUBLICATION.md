@@ -1,6 +1,6 @@
 # RH Semantic Audit — publication and verification scope
 
-**Current release:** v0.11, November 20, 2026  
+**Current release:** v0.12, November 20, 2026  
 **Only active subject:** claimed Lean formalization of the Riemann Hypothesis.
 
 Repository: https://github.com/pitimespi/rh-semantic-audit
@@ -11,6 +11,7 @@ Repository: https://github.com/pitimespi/rh-semantic-audit
 - [AUDIT-004](audit/AUDIT-004-ANALYTIC-BRIDGE.md): traced an **analogous** seven-premise theorem `UpperTheory.Lit.everyE₂` through primitive-character nonvanishing and Euler factors. It is **not the demonstrated direct path** to the headline theorem.
 - [AUDIT-005](audit/AUDIT-005-EXACT-THETA-BRIDGE.md): located the actual `every_character_of_theta_integrals_local_matching` theorem at the pinned mirror's `SiegelEisensteinSecondTermHypotheses.lean`, lines 69–73. Mapped its seven explicit caller arguments, definite-side `HypsAlt` construction, and its use of `every_character_of_green_v_win`.
 - [AUDIT-006](audit/AUDIT-006-GLOBAL-WITNESS.md): traced the grid and linked-family bridge from theta/local matching to a selected 46-field global witness. The [field ledger](examples/rh_witness_fields.json) records all 46 named assignments and the 26 name-only correspondences from upstream `AllRowsAlt`. The [witness graph](examples/rh_witness_assembly.json) contains 16 nodes and 15 directly cited theorem calls.
+- [AUDIT-007](audit/AUDIT-007-MINKOWSKI-DISCHARGE.md): identified source-level proof-supplier `minkowski_bound_rat` for the apparent `MinkDiv` conditional in the actual RH branch. Verified eight source line relationships; no missing-hypothesis claim. [Prepared Prove2me RH research resource](contributions/rh_minkowski_resource.json) can be posted by the documented [local publisher](docs/PROVE2ME-RH-RESOURCE.md). **Not yet posted to Prove2me.**
 - [Actual bridge graph](examples/rh_actual_bridge.json): twelve source-linked nodes and eleven named source-reference edges.
 - [Headline graph](examples/rh_critical_path.json): includes a source-confirmed reference to the central theta theorem.
 - [Viewer](viewer/index.html): offers the *actual central bridge* first, a 46-field global-witness drill-down, the headline chain, and the clearly labeled earlier analogous branch.
@@ -19,12 +20,13 @@ Repository: https://github.com/pitimespi/rh-semantic-audit
 
 Baseline mirror commit: `e50d09817ad81469f737e8f637561e6ccf86c670`.
 
-The latest verified full source-check GitHub Actions RH run is [44852796971](https://github.com/pitimespi/rh-semantic-audit/actions/runs/44852796971). It passed:
+The RH tests and pinned-source checks are checked by [GitHub Actions](https://github.com/pitimespi/rh-semantic-audit/actions). Once the v0.12 run completes, its individual result is the authoritative current status. The previous verified source-check run is [44852796971](https://github.com/pitimespi/rh-semantic-audit/actions/runs/44852796971); additions since then include:
 
-- **69 unit tests**;
+- **81 unit tests**;
 - graph validation and generated reports;
 - JavaScript viewer syntax checking;
 - pinned textual correspondence checks for the three `OpenLiteratureStatements` fields, the earlier seven-edge analog branch, **all eleven edges** of the actual central bridge, **all fifteen edges** of the witness-assembly graph, and the **26 upstream / 46 downstream** named field correspondence.
+- eight additional source-text checks of the `MinkDiv`/Minkowski assumption-discharge chain, and mock-only tests of Prove2me resource posting.
 
 These tests are **not** Lean elaboration, a full compilation, a kernel proof replay, a formal axiom audit, or independent mathematical acceptance of RH.
 
@@ -37,6 +39,6 @@ These tests are **not** Lean elaboration, a full compilation, a kernel proof rep
 
 ## Access, licensing, and engagement policy
 
-No external Prove2me contribution, issue, PR, discussion, announcement, researcher contact, or other community engagement has been made. The earlier Bitcoin engineering fixtures remain inactive and are not part of the current research. No user credential is stored or used in GitHub automation.
+No external Prove2me contribution, issue, PR, discussion, announcement, researcher contact, or other community engagement has been made. The user's latest request permits posting this RH research resource to Prove2me, but the current chat has no authenticated Prove2me API write capability. The resource publisher must run locally with a freshly rotated key, not the exposed earlier key. The earlier Bitcoin engineering fixtures remain inactive and are not part of the current research. No user credential is stored or used in GitHub automation.
 
 No unlicensed original Lean proof files are redistributed by the audit.
