@@ -1,27 +1,41 @@
-# RH semantic audit — publication and scope policy
+# RH Semantic Audit — publication and verification scope
 
-**Version 0.8 (2026-11-20)** · Active scope: **Riemann Hypothesis only**.
+**Current release:** v0.10, November 20, 2026  
+**Only active subject:** claimed Lean formalization of the Riemann Hypothesis.
 
 Repository: https://github.com/pitimespi/rh-semantic-audit
 
-## Status
+## Completed source-level investigation
 
-- [x] Publish an RH-only research introduction and roadmap in [README.md](README.md).
-- [x] Preserve pinned provenance for third-party source mirror commit `e50d09817ad81469f737e8f637561e6ccf86c670`.
-- [x] Document the exact three fields of `OpenLiteratureStatements` and their source-level construction in [AUDIT-003](audit/AUDIT-003-OPEN-LITERATURE.md).
-- [x] Enrich the [RH semantic graph](examples/rh_critical_path.json) with those explicit assumptions.
-- [x] Make the [viewer](viewer/index.html) show RH as the sole example choice.
-- [x] Add an RH-only source-text checker that reads selected files by immutable Git commit, without distributing or executing unlicensed Lean source.
-- [x] Confirm GitHub Actions [RH-only workflow](https://github.com/pitimespi/rh-semantic-audit/actions/runs/44850737317) passed 48 unit tests, graph validation, JavaScript syntax, and pinned RH source interface checks.
-- [x] Preserve older unrelated engineering examples as [inactive legacy material](docs/LEGACY.md) rather than deleting them without a specific request.
-- [x] Maintain the hold on outreach: no issues, PRs, public comments, researcher contacts or upstream submissions.
+- [AUDIT-003](audit/AUDIT-003-OPEN-LITERATURE.md): inventoried the three explicit fields of `OpenLiteratureStatements`, including the duplicated written proposition type in two fields.
+- [AUDIT-004](audit/AUDIT-004-ANALYTIC-BRIDGE.md): traced an **analogous** seven-premise theorem `UpperTheory.Lit.everyE₂` through primitive-character nonvanishing and Euler factors. It is **not the demonstrated direct path** to the headline theorem.
+- [AUDIT-005](audit/AUDIT-005-EXACT-THETA-BRIDGE.md): located the actual `every_character_of_theta_integrals_local_matching` theorem at the pinned mirror's `SiegelEisensteinSecondTermHypotheses.lean`, lines 69–73. Mapped its seven explicit caller arguments, definite-side `HypsAlt` construction, and its use of `every_character_of_green_v_win`.
+- [Actual bridge graph](examples/rh_actual_bridge.json): twelve source-linked nodes and eleven named source-reference edges.
+- [Headline graph](examples/rh_critical_path.json): includes a source-confirmed reference to the central theta theorem.
+- [Viewer](viewer/index.html): offers the *actual central bridge* first, then the headline chain and the clearly labeled earlier analogous branch.
 
-## Limits and next steps
+## Reproducibility
 
-The new field inventory and CI check are *source-level results*. They do not demonstrate the mathematical correctness of the published RH claim, expand implied arguments or instances, check for axioms, reconstruct an elaborated dependency graph, or replay the proof in the Lean kernel.
+Baseline mirror commit: `e50d09817ad81469f737e8f637561e6ccf86c670`.
 
-**Next checks:** expand `UpperTheory.One.M.Row` versus `UpperTheory.GalStar.Row0b`, analyze the `recTExists` theorem's prerequisites, and retrieve a precise elaborated type and independent mathematical read-back of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`.
+The latest completed GitHub Actions RH run is [44852085962](https://github.com/pitimespi/rh-semantic-audit/actions/runs/44852085962). It passed:
 
-The Prove2me integration and Bitcoin files are historical scaffolding only. **No Prove2me theorem or explanation has been submitted** as part of this RH audit. The RH source in the mirror has no explicit reuse license reported; no original proof source is redistributed in this project.
+- **57 unit tests**;
+- graph validation and generated reports;
+- JavaScript viewer syntax checking;
+- pinned textual correspondence checks for the three `OpenLiteratureStatements` fields, the earlier seven-edge analog branch, and **all eleven edges** of the actual central bridge.
 
-A previously exposed Prove2me API key should be revoked and replaced; no credential belongs in GitHub commits or automation.
+These tests are **not** Lean elaboration, a full compilation, a kernel proof replay, a formal axiom audit, or independent mathematical acceptance of RH.
+
+## Active research questions
+
+1. Expand `UnitaryGroupThirdPlaceHypotheses` and `ThetaLocalInputs` field by field and trace their proof origins.
+2. Explain the analytic construction `nonempty_hyps_definite_side_of_closed_bound` precisely, including its evaluation-grid and linked-family steps.
+3. Expand `Row0b`, `Row`, `VWin`, `HypsAlt`, `CovolumeBoundOfX` and `RecTExists` into human-reviewed mathematical statements.
+4. Obtain a Lean-elaborated type, axiom inventory and genuine proof-term dependency evidence for the critical theorems.
+
+## Access, licensing, and engagement policy
+
+No external Prove2me contribution, issue, PR, discussion, announcement, researcher contact, or other community engagement has been made. The earlier Bitcoin engineering fixtures remain inactive and are not part of the current research. No user credential is stored or used in GitHub automation.
+
+No unlicensed original Lean proof files are redistributed by the audit.
