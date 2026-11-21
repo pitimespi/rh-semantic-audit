@@ -1,0 +1,6 @@
+{
+  "title": "RH semantic audit: where the Minkowski condition is discharged",
+  "url": "https://github.com/pitimespi/rh-semantic-audit/blob/main/audit/AUDIT-007-MINKOWSKI-DISCHARGE.md",
+  "type": "article",
+  "description": "Pinned Lean-source audit of the claimed Alpöge RH/GRH formalization. Traces HypsAlt.hEx : MinkDiv → ExS from the selected-family constructor to the downstream use hEx minkowski_bound_rat. The named proof supplier is PI.MkQ.minkowskiBoundQ via minkowski_bound_rat. This resolves one apparent conditionality question at source level; the non-vacuity of DefiniteSideCondition and correctness of the selected row conditions remain open. Includes exact source line citations, 26-to-46 field provenance, and evidence limits. This is NOT a proof or independent verification of RH, nor a reported flaw."
+}
