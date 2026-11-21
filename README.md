@@ -1,10 +1,18 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.4 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Status: early research prototype, v0.5 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
 
 A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
 
 This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+
+## Interactive viewer and source-grounded semantic proof (v0.5)
+
+- **[Interactive graph viewer](viewer/index.html)**: explore either pinned example with clickable theorem nodes, assumption inventory, evidence grades, source links, and individual semantic explanations. Run \`python3 -m http.server 8000\` from the repository root and visit \`http://localhost:8000/viewer/\`, or open local JSON in the viewer. See [viewer documentation](docs/VIEWER.md).
+- **[BITCOIN-001: UTXO supply ceiling](audit/BITCOIN-001-SUPPLY.md)**: a source-linked mathematical read-back of how \`BitcoinSupply.supply_bound\` and \`BitcoinSubsidy.issuance_bound\` yield \`BitcoinSupply.supply_lt_maxMoney\`.
+- **Reproducible source checks**: the [CI workflow](.github/workflows/semantic-graph.yml) checks direct theorem references at their exact **pinned Lean source line numbers**, verifies imported-theorem candidates against the pinned Prove2me repository, runs the Python tests, and checks the viewer's JavaScript syntax. This is still **source-text evidence**, not kernel dependency extraction.
+
+The Bitcoin graph contains **three direct source references** and **two import candidates**, explicitly distinguished. No semantic claim is marked independently reviewed. The RH graph is a previously documented source-level path, not a new discovery.
 
 ## Read-only Prove2me integration (v0.4)
 
