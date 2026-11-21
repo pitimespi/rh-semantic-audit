@@ -1,6 +1,6 @@
 # Prove2me integration — actual IDs, source provenance, and read-only APIs
 
-**Prototype v0.4, 2026-11-20.** This adapter makes no account changes and does not submit theorem proofs, mission edits, comments, or reviews. It is not connected to any Prove2me account in this repository.
+**Prototype v0.6, 2026-11-20.** This adapter makes no account changes and does not submit theorem proofs, mission edits, comments, or reviews. It is not connected to any Prove2me account in this repository.
 
 The official [Prove2me skill's API documentation](https://github.com/prove2me/prove2me_workspace/blob/main/SKILL.md) describes the read-only endpoints used here:
 
@@ -8,7 +8,27 @@ The official [Prove2me skill's API documentation](https://github.com/prove2me/pr
 - \`GET https://prove2.me/api/v1/theorems/:theorem_id\` — fetch the canonical theorem record.
 - \`GET https://prove2.me/api/v1/theorems/:theorem_id/decompositions\` — fetch a theorem's **platform-recorded proof sketch/reduction** children.
 
-**Auth:** These require a Bearer access token. The adapter reads \`PROVE2ME_ACCESS_TOKEN\` only from the process environment and sends it exclusively to \`https://prove2.me/api/v1\`. Redirects are disabled. Only GET requests are implemented. Tokens, keys and passwords must NEVER be committed or pasted into an issue, log or chat.
+**Auth:** The documented Prove2me API key can be exchanged at `POST https://prove2.me/api/v1/agent/refresh` for a short-lived Bearer access token. The adapter reads `PROVE2ME_API_KEY` or `PROVE2ME_ACCESS_TOKEN` only from the local process environment. It performs **GET requests for theorem data and a single POST exclusively for authentication**. Redirects are disabled; credentials are never written to files or logs. Never commit or paste credentials into an issue, log or chat.
+
+## Set up a key without exposing it in GitHub or chat
+
+1. On your local computer, log in to [Prove2me](https://prove2.me) and use the account menu → **API key**, following the [official setup guide](https://github.com/prove2me/prove2me_workspace/blob/main/references/setup.md).
+2. From the root of a local \`rh-semantic-audit\` clone, run the following **in your shell**. This prompts invisibly rather than putting a key into a command-line argument or shell history:
+
+   \`\`\`bash
+   read -rsp "Prove2me API key: " PROVE2ME_API_KEY; echo
+   export PROVE2ME_API_KEY
+   python3 -m semantic_graph.cli lookup-prove2me \
+     --theorem-name BitcoinSupply.supply_bound \
+     --out outputs/theorem-supply-bound.json
+   unset PROVE2ME_API_KEY
+   \`\`\`
+
+The adapter exchanges the key for an access token **in memory**, sends the access token only to the documented Prove2me theorem endpoints, and writes the resulting JSON theorem snapshot to the gitignored local \`outputs/\` directory. It does **not** store the key or token. Source records may include details from private missions; do not commit the output without checking its visibility.
+
+If you already have a short-lived access token, you may supply \`PROVE2ME_ACCESS_TOKEN\` instead. It takes precedence over \`PROVE2ME_API_KEY\`. The key is intentionally not available to the GitHub Actions workflow or other public repository automation.
+
+**This chat cannot directly read the key from your Prove2me account.** Authorization to use it is distinct from having it available in a runtime. Live retrieval has not been run here.
 
 ## Why three distinct IDs matter
 
@@ -55,9 +75,9 @@ The output contains proposal IDs and locally reported statuses only. The source 
 
 ## Step 2: optionally bind actual theorem IDs (authenticated read-only)
 
-Obtain an API access token through your own Prove2me account and follow the [official setup instructions](https://github.com/prove2me/prove2me_workspace/blob/main/references/setup.md). Do **not** commit your token or publish theorem responses from a private mission.
+Use the local API-key prompt above (or an already obtained short-lived API access token) and follow the [official setup instructions](https://github.com/prove2me/prove2me_workspace/blob/main/references/setup.md). Do **not** commit your token or publish theorem responses from a private mission.
 
-In your own shell, set the environment variable \`PROVE2ME_ACCESS_TOKEN\`. The CLI does not save or print it.
+In your own shell, set `PROVE2ME_API_KEY` or `PROVE2ME_ACCESS_TOKEN`. The CLI does not save or print either credential.
 
 To find a theorem ID and retrieve full details by exact name:
 
