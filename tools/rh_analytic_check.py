@@ -17,12 +17,12 @@ REPOSITORY = "https://github.com/Deicyde/riemann-hypothesis"
 EXPECTED_REV = "e50d09817ad81469f737e8f637561e6ccf86c670"
 
 def source_line_checks(graph, sources):
+    project = graph.get("project", {})
+    if project.get("repository") != REPOSITORY or project.get("revision") != EXPECTED_REV:
+        return [{"error": "Unrecognized repository/revision"}]
     errs = validate(graph)
     if errs:
         return [{"error": "Invalid semantic graph", "problems": errs}]
-    project = graph["project"]
-    if project["repository"] != REPOSITORY or project["revision"] != EXPECTED_REV:
-        return [{"error": "Unrecognized repository/revision"}]
     by_id = {node["id"]: node for node in graph["nodes"]}
     results = []
     for edge in graph["edges"]:
