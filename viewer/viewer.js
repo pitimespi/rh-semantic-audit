@@ -317,6 +317,9 @@
   document.getElementById("actual").addEventListener("click", function () {
     loadExample("rh_actual_bridge.json", "RH actual central theorem and seven inputs");
   });
+  document.getElementById("witness").addEventListener("click", function () {
+    loadExample("rh_witness_assembly.json", "RH definite-side 46-field witness assembly");
+  });
   document.getElementById("analytic").addEventListener("click", function () {
     loadExample("rh_analytic_bridge.json", "RH analytic bridge — primitive to all characters");
   });
