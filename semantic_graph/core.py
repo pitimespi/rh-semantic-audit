@@ -10,9 +10,10 @@ from pathlib import Path
 from urllib.parse import quote
 
 SCHEMA = "semantic-proof-graph/v1"
-KINDS = {"source_reference", "import_candidate", "kernel_dependency"}
+KINDS = {"source_reference", "import_candidate", "platform_decomposition", "kernel_dependency"}
 REVIEWS = {"draft", "independent_review", "disputed"}
 HEX40 = re.compile(r"^[a-f0-9]{40}$")
+HEX64 = re.compile(r"^[a-f0-9]{64}$")
 ID = re.compile(r"^[A-Za-z][A-Za-z0-9_.:-]*$")
 
 
@@ -112,6 +113,15 @@ def validate(doc):
         elif e.get("kind") == "kernel_dependency":
             if evidence.get("method") != "kernel_trace" or not isinstance(evidence.get("certificate"), str) or not evidence["certificate"].strip():
                 errors.append(label + " kernel_dependency needs kernel_trace and certificate")
+        elif e.get("kind") == "platform_decomposition":
+            api = evidence.get("api")
+            if evidence.get("method") != "platform_decomposition_api" or not isinstance(api, dict):
+                errors.append(label + " platform_decomposition needs a recorded API snapshot")
+            elif not all(isinstance(api.get(k), str) and api[k].strip()
+                         for k in ("endpoint", "snapshot_sha256", "submission_id")):
+                errors.append(label + " platform_decomposition needs endpoint, SHA-256 and submission ID")
+            elif not HEX64.fullmatch(api["snapshot_sha256"]) or not api["endpoint"].startswith("https://prove2.me/api/v1/theorems/"):
+                errors.append(label + " platform_decomposition snapshot provenance is invalid")
         elif evidence.get("method") not in ("textual_reference", "import_statement"):
             errors.append(label + " source-level evidence method required")
         semantic = e.get("semantic")
@@ -178,7 +188,7 @@ def render_mermaid(doc):
         label=n["title"].replace('"',"'").replace("\n"," ")
         lines.append(f'    {n["id"]}["{label}"]')
     for e in sorted(doc["edges"],key=lambda x:x["id"]):
-        label={"source_reference":"source ref", "import_candidate":"import only", "kernel_dependency":"kernel trace"}[e["kind"]]
+        label={"source_reference":"source ref", "import_candidate":"import only", "platform_decomposition":"platform sketch", "kernel_dependency":"kernel trace"}[e["kind"]]
         lines.append(f'    {e["from"]} -->|{label}| {e["to"]}')
     lines.append("    %% Semantic text is independently reviewable annotation, not kernel evidence.")
     return "\n".join(lines)+"\n"
