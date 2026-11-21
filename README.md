@@ -1,127 +1,70 @@
 # RH Semantic Audit
 
-**Status: early research prototype, v0.7 (2026-11-20). Not an independent verification of the Riemann Hypothesis.**
+**Active research focus: the claimed Lean formalization of the Riemann Hypothesis, exclusively.**  
+**Version:** 0.8 · **Baseline:** third-party verification mirror at commit `e50d09817ad81469f737e8f637561e6ccf86c670`.
 
-A source-linked, human-oriented review of selected declarations in the purported Lean 4 proof of the Riemann Hypothesis announced by Levent Alpöge on November 20, 2026. It applies review methods developed in [Prove2me](https://github.com/pitimespi/prove2me): exact version pinning, independent read-backs, explicit hypothesis inventories, risk-ranked review, and provenance-aware reporting.
+This project develops an **evidence-aware semantic proof graph** for the purported RH formalization announced by Levent Alpöge on November 20, 2026. It distinguishes the meaning of a formal theorem, the assumptions feeding it, source-text connections, and actual Lean kernel dependencies. The goal is to explain the mathematics *without overstating what source inspection has established*.
 
-This is **not** a new proof, a proof validity determination, an original discovery of the top-level theorem chain, or a complete Lean dependency analysis. Independent kernel replay and statement checking are being undertaken by other researchers; see the references below. Our intended contribution is **explaining the mathematical content and interfaces inside a large formal proof**.
+**This is not a verified proof of RH, an independent kernel replay, or an original discovery of the high-level theorem dependency chain.** All mathematical explanations remain provisional until independently reviewed.
 
-## Direct Prove2me proof-explanation contribution (v0.7)
+## RH research artifacts
 
-A [preview-first, creator-owned submission publisher](semantic_graph/publish.py) can now prepare and, on explicit confirmation, PATCH the `explanation` on **your own accepted Prove2me submission** using the official API. This is the narrowest available direct platform contribution: no new theorem, proof replacement, or website/backend installation.
-
-The first [candidate contribution](contributions/bitcoin_supply_lt_maxMoney_explanation.md) is a source-linked explanation of `BitcoinSupply.supply_lt_maxMoney`. See the [step-by-step direct contribution guide](docs/DIRECT-PROVE2ME-CONTRIBUTION.md) for local preview, ownership checks, confirmation, and credential handling.
-
-**No Prove2me submission has been modified by ChatGPT.** The connection is unavailable in this chat's execution environment. The workflow is intended to run locally after obtaining a fresh credential, and requires both `--apply` and an exact submission ID before making a write. Do not paste API keys into chat or commit them.
-
-## API-key authentication for read-only Prove2me lookup (v0.6)
-
-The [Prove2me integration guide](docs/PROVE2ME-INTEGRATION.md) now documents secure **local use of a Prove2me API key**. Supply `PROVE2ME_API_KEY` as a local environment variable; the adapter exchanges it at the official Prove2me `/agent/refresh` endpoint for a short-lived access token, then performs read-only theorem and decomposition lookups. It also accepts an existing `PROVE2ME_ACCESS_TOKEN`.
-
-**No key has been shared with this repository or ChatGPT.** No live Prove2me query has been performed here. Tests mock the authentication endpoint and never send real credentials. Do not put keys in chat messages, public commits, repository secrets for untrusted workflows, or log files.
-
-## Interactive viewer and source-grounded semantic proof (v0.5)
-
-- **[Interactive graph viewer](viewer/index.html)**: explore either pinned example with clickable theorem nodes, assumption inventory, evidence grades, source links, and individual semantic explanations. Run \`python3 -m http.server 8000\` from the repository root and visit \`http://localhost:8000/viewer/\`, or open local JSON in the viewer. See [viewer documentation](docs/VIEWER.md).
-- **[BITCOIN-001: UTXO supply ceiling](audit/BITCOIN-001-SUPPLY.md)**: a source-linked mathematical read-back of how \`BitcoinSupply.supply_bound\` and \`BitcoinSubsidy.issuance_bound\` yield \`BitcoinSupply.supply_lt_maxMoney\`.
-- **Reproducible source checks**: the [CI workflow](.github/workflows/semantic-graph.yml) checks direct theorem references at their exact **pinned Lean source line numbers**, verifies imported-theorem candidates against the pinned Prove2me repository, runs the Python tests, and checks the viewer's JavaScript syntax. This is still **source-text evidence**, not kernel dependency extraction.
-
-The Bitcoin graph contains **three direct source references** and **two import candidates**, explicitly distinguished. No semantic claim is marked independently reviewed. The RH graph is a previously documented source-level path, not a new discovery.
-
-## Read-only Prove2me integration (v0.4)
-
-The engine now supports an evidence-preserving progression from **local proposal-item IDs → actual platform theorem IDs → platform-recorded sketch dependencies**, without conflating them with Lean kernel-traced dependencies.
-
-- [Integration guide](docs/PROVE2ME-INTEGRATION.md) explains the exact API endpoints, ID types, security controls and commands.
-- [\`semantic_graph/prove2me.py\`](semantic_graph/prove2me.py) implements locally pinned proposal mapping, exact theorem-name lookup, cached theorem-detail binding, and decomposition import.
-- [Bitcoin supply, with actual proposal-item IDs](examples/bitcoin_supply_proposal_linked.json) records three GitHub-sourced identifiers and repository-reported acceptance statuses. **They are not theorem IDs.**
-- [Adapter regression tests](tests/test_prove2me_adapter.py) run without network calls using synthetic API responses.
-
-All live Prove2me calls are **optional, authenticated GET-only**, with redirects disabled and credentials supplied only through a local environment variable. We have **not** connected a live Prove2me account or fetched its theorem records during this work. Platform sketches and natural-language annotations are not kernel certificates.
-
-## Reusable semantic proof graph prototype (v0.3)
-
-This repository now includes a **provider-neutral semantic graph engine** that can examine selected theorem paths from **Bitcoin/Prove2me** and **Alpöge's RH proof**. Both examples are pinned to full repository commit SHAs.
-
-| Component | Purpose |
+| Artifact | What it provides |
 |---|---|
-| [`semantic_graph/core.py`](semantic_graph/core.py) | Versioned JSON graph contract, integrity checks, dependency queries, Markdown and Mermaid renderers |
-| [`semantic_graph/cli.py`](semantic_graph/cli.py) | Validate, visualize, explain, and verify imported-theorem candidates against a local pinned checkout |
-| [Bitcoin supply example](examples/bitcoin_supply.json) | Actual theorem names, reachability assumptions and candidate imports from the [Prove2me Bitcoin formalization](https://github.com/pitimespi/prove2me) |
-| [RH critical path example](examples/rh_critical_path.json) | Selected, manually traced theorem references in the RH mirror |
-| [`tests/test_semantic_graph.py`](tests/test_semantic_graph.py) | Schema, edge semantics, provenance, and regression checks |
-| [Design and usage](docs/SEMANTIC-GRAPH.md) | Trust model, extension points, limitations, and next milestones |
+| [AUDIT-001](audit/AUDIT-001.md) | First read-back of the RH theorem chain |
+| [AUDIT-002](audit/AUDIT-002.md) | The literature/theta theorem interface and its visible prerequisites |
+| **[AUDIT-003](audit/AUDIT-003-OPEN-LITERATURE.md)** | Exact three-field inventory of `OpenLiteratureStatements`, construction at the `everyCharacter_of_row` boundary, and unresolved type compatibility |
+| [RH semantic graph](examples/rh_critical_path.json) | Selected source-linked theorem nodes, human-readable assumptions and draft explanations |
+| [Review queue](audit/REVIEW-QUEUE.md) | Prioritized mathematical and formal-methods checks |
+| [Provenance](audit/PROVENANCE.md) | Pinned source, Lean and Mathlib versions, and trust boundaries |
 
-Run locally from this repository (Python 3.10+; standard library only):
+## Principal finding so far
+
+At the pinned [`OpenLiteratureStatements` definition](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L211-L218), the proposition has three named fields:
+
+1. `caraianiLocalGlobalDual : UpperTheory.One.M.Row`
+2. `localLanglandsExists : UpperTheory.Zero.LLC.RecTExists`
+3. `galoisRepOfPolarizedPairLit : UpperTheory.One.M.Row`
+
+The first and third fields request the **same written proposition type**. At the [`everyCharacter_of_row` application](https://github.com/Deicyde/riemann-hypothesis/blob/e50d09817ad81469f737e8f637561e6ccf86c670/src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean#L7-L8), the terms supplied are `h`, `UpperTheory.Zero.LLC.recTExists`, and `h`, together with a `VWin` value constructed from `h`.
+
+That is a **source-level description of the interface**, not a proof that all mathematical content is valid or a substitute for Lean elaboration/kernel verification.
+
+## Research program
+
+Our next original work is to produce an independently reviewable mathematical explanation of:
+
+- the precise definitions and compatibility of `UpperTheory.One.M.Row`, `UpperTheory.GalStar.Row0b`, and `UpperTheory.Top.VWin`;
+- the complete *elaborated* type and relevant assumptions of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`;
+- how those theta-integral and local-matching hypotheses lead to `UpperTheory.EveryCharacter`, then `RiemannHypothesis`.
+
+A meaningful contribution must provide **more mathematical substance and evidence** than the earlier source-dependency maps. See the [related verification discussion](https://github.com/Deicyde/riemann-hypothesis/issues/3) and [Keith Adler's proof map](https://github.com/keithadler/rh-trim/blob/main/docs/PROOF-MAP.md).
+
+## Explore the RH graph locally
+
+The [offline viewer](viewer/index.html) focuses on the RH graph and displays the mathematical statements, recorded prerequisites, evidence classes, source links and review status.
 
 ```sh
-python3 -m semantic_graph.cli validate examples/bitcoin_supply.json
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/viewer/` in your browser.
+
+The reusable engine remains in [`semantic_graph/`](semantic_graph/), with a JSON validator, report generation and a local browser viewer:
+
+```sh
 python3 -m semantic_graph.cli validate examples/rh_critical_path.json
-python3 -m semantic_graph.cli validate examples/bitcoin_supply_proposal_linked.json
 python3 -m semantic_graph.cli mermaid examples/rh_critical_path.json > rh.mmd
-python3 -m semantic_graph.cli report examples/bitcoin_supply.json --target supply_cap > bitcoin-supply.md
+python3 -m semantic_graph.cli report examples/rh_critical_path.json --target headline > rh-review.md
 python3 -m unittest discover -s tests -v
 ```
 
-The Bitcoin fixture marks edges as **`import_candidate`**, because the referenced proof file imports these published theorem stubs; import alone does not establish a genuine proof-term dependency. RH fixture edges are **`source_reference`**, not independently extracted kernel dependencies. There are **no** `kernel_dependency` edges in either fixture. An edge's interpretation is a separately versioned human-reviewable annotation, initially `draft`. Two independent reviewers are required before an annotation may be marked `independent_review`.
+These are graph/schema and source-level checks, **not Lean compilation or proof validation**. No unlicensed Lean proof source is bundled.
 
-This project is *not* currently integrated with the Prove2me platform's private APIs and has not been submitted to its maintainers. The engine is an experimental research prototype, not a Lean theorem prover, formal certificate checker, or guarantee of mathematical truth. **Community outreach remains on hold.**
+## Scope and engagement
 
-## Contents
+**All new research and proposed contributions concern RH only.** Older Bitcoin/Prove2me examples and direct-submission prototype files remain in Git history and the working tree as legacy engineering fixtures; they are **not part of the current research program**. They are not being submitted to Prove2me or developed further. See [historical material](docs/LEGACY.md).
 
-- [`audit/AUDIT-001.md`](audit/AUDIT-001.md): source-grounded read-back of the top-level RH / GRH theorem path.
-- [`audit/AUDIT-002.md`](audit/AUDIT-002.md): the `every_character_of_literature_of_vWin` interface, explicit inputs, and priority questions for understanding its central theorem application.
-- [`audit/REVIEW-QUEUE.md`](audit/REVIEW-QUEUE.md): risk-ranked work items and evidence criteria.
-- [`audit/PROVENANCE.md`](audit/PROVENANCE.md): exact pinned source and limitations.
-- [`graph/`](graph/): 11-declaration illustrative source-level graph and metadata, **not** a proof-term DAG.
-- [`tools/rh_audit.py`](tools/rh_audit.py): read-only static source scanner (Python standard library).
-- [`tests/`](tests/): unit tests covering synthetic source snippets.
-- [`PUBLICATION.md`](PUBLICATION.md): release checklist and community-engagement hold.
+There is **no active Prove2me RH submission** in this project, and the available API does not automatically install a semantic graph as a platform feature. No community issues, upstream pull requests, contacts or announcements are authorized at this stage.
 
-## Source baseline
-
-| Item | Pin |
-|---|---|
-| Third-party mirror | [`Deicyde/riemann-hypothesis`](https://github.com/Deicyde/riemann-hypothesis) |
-| Audited mirror commit | [`e50d09817ad81469f737e8f637561e6ccf86c670`](https://github.com/Deicyde/riemann-hypothesis/tree/e50d09817ad81469f737e8f637561e6ccf86c670) |
-| Lean | `leanprover/lean4:v4.33.1` |
-| Mathlib | `0df444a360eaa60ab8c11dca51a86af692955474` |
-
-See [`audit/PROVENANCE.md`](audit/PROVENANCE.md). The source mirror states that the original proof has no explicit reuse license, so **we do not redistribute its Lean code**. File-level source references are links only.
-
-## Reproduce our limited scan
-
-Clone the original mirror to a separate directory and pin it; do not compile untrusted proof code outside an isolated environment. This static scanner **does not execute Lean**.
-
-```sh
-git clone https://github.com/Deicyde/riemann-hypothesis.git
-cd riemann-hypothesis
-git checkout e50d09817ad81469f737e8f637561e6ccf86c670
-cd ..
-python3 rh-semantic-audit/tools/rh_audit.py --root riemann-hypothesis --out rh-static-results
-python3 -m unittest discover -s rh-semantic-audit/tests -v
-```
-
-Replace `rh-semantic-audit` with your local checkout directory name. The scanner checks 11 selected declarations by name and a set of expected *textual references*. It does not expand tactics, inspect `.olean` dependencies, compute theorem closures, check axioms or establish mathematical correctness.
-
-## Research context and prior work
-
-- [Original announcement](https://alpo.ge/remark.pdf)
-- [MIT verification status](https://math.mit.edu/~drew/grh/)
-- [Deicyde's verification mirror and issue #3](https://github.com/Deicyde/riemann-hypothesis/issues/3): earlier independent top-level proof maps and source reduction. Our graph overlaps this prior work and is not presented as novel.
-- [Distributed replay and Mathlib-only statement checking](https://github.com/rohanarun/alpoge-rh-replay/tree/main/audit): independent formal checks we do not reproduce.
-- [Keith Adler's `rh-trim`](https://github.com/keithadler/rh-trim): dependency tracing and reduction research; its earlier reduction numbers were corrected after failed builds.
-- [Prove2me review method](https://github.com/pitimespi/prove2me/blob/main/REVIEW.md): inspiration for blind source read-backs.
-
-## Near-term research questions
-
-1. What are the exact mathematical contents of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching` and its prerequisites?
-2. Which arguments use `OpenLiteratureStatements` and how are those fields actually discharged by upstream theorems?
-3. Can two independent analysts produce matching, specialist-readable read-backs of the crucial source terms?
-4. Can the boundary between a named lemma and its mathematical justification be made navigable without replacing kernel verification?
-
-## License and attribution
-
-Original audit text, metadata and scanner in this repository are made available under the MIT License (`LICENSE`). This license **does not** apply to linked third-party Lean sources or external research. The original proof and other researchers' independent work retain their own copyright and license terms.
-
-**Engagement hold:** No upstream issues, pull requests, announcements, or invitations have been posted as part of preparing this repository. See `PUBLICATION.md`.
+If an API credential was previously shared in chat, it should be revoked and replaced; no credential is stored in this repository.
